@@ -1,0 +1,23 @@
+resource "aws_instance" "schema-registry" {
+  ami                    = data.aws_ami.schema.id
+  count                  = length(var.schema_subnets)
+  iam_instance_profile   = aws_iam_instance_profile.confluent_ssm_profile.name
+  instance_type          = var.schema_instance_type
+  key_name               = var.key_name
+  private_ip             = element(var.schema_private_ip, count.index)
+  subnet_id              = element(var.schema_subnets, count.index)
+  user_data              = element(data.template_file.schema_registry_user_data.*.rendered, count.index)
+  vpc_security_group_ids = [aws_security_group.ssh.id, aws_security_group.schema.id]
+
+  depends_on = ["aws_lb.schema"]
+
+  root_block_device {
+    volume_size = 32 # 32GB
+  }
+
+  lifecycle {
+    ignore_changes = ["user_data"]
+  }
+
+  tags = var.common_tags
+}

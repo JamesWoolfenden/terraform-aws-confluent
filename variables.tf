@@ -4,7 +4,7 @@ variable "account_name" {
 
 variable "allowed_ips" {
   type        = list
-  default     = ""
+  default     = []
   description = ""
 }
 
@@ -34,6 +34,8 @@ variable "broker_protocol" {
 
 variable "client_instance_type" {
   type = string
+  description = "Size of client instance"
+  default     = "t2.micro"
 }
 
 variable "confluent_broker_version" {
@@ -52,13 +54,34 @@ variable "confluent_license" {
   type = string
 }
 
-variable "confluent_schema_version" {}
-variable "confluent_zookeeper_version" {}
-variable "connect_instance_type" {}
+variable "confluent_schema_version" {
+  type    = string
+  default = ""
+}
 
-variable "consumer_instance_type" {}
+variable "confluent_zookeeper_version" {
+  type    = string
+  default = ""
 
-variable "control_center_instance_type" {}
+}
+
+variable "connect_instance_type" {
+  type        = string
+  description = "Size of broker instance"
+  default     = "t2.micro"
+}
+
+variable "consumer_instance_type" {
+  type        = string
+  description = "Size of consumer instance"
+  default     = "t2.micro"
+}
+
+variable "control_center_instance_type" {
+  type        = string
+  description = "Size of control center instance"
+  default     = "t2.micro"
+}
 
 variable "environment" {}
 
@@ -68,14 +91,21 @@ variable "name" {
   type = string
 }
 
-variable "private_zone_id" {}
-variable "schema_instance_type" {}
-variable "source_ami_account_id" {}
-variable "vpc_cidr" {}
-variable "vpc_id" {}
-variable "zk_instance_type" {
+
+variable "schema_instance_type" {
+  type    = string
+  default = "t2.micro"
+}
+
+variable "source_ami_account_id" {
   type = string
 }
+
+variable "vpc_cidr" {
+  type = string
+}
+
+
 
 variable "bastion_count" {
   default = 1
@@ -89,19 +119,12 @@ variable "zk_subnets" {
   type = list
 }
 
-variable "broker_subnets" {
-  type = list
-}
-
-variable "connect_subnets" {
-  type = list
-}
 
 variable "control_center_subnets" {
   type = list
 }
 
-variable "schema_subnets" {
+variable "private_subnets" {
   type = list
 }
 
@@ -147,4 +170,9 @@ variable "zk-peer-listener-port" {
 
 variable "zk-leader-listener-port" {
   default = "5590"
+}
+
+variable "zk_instance_type" {
+  type    = string
+  default = "t2.micro"
 }

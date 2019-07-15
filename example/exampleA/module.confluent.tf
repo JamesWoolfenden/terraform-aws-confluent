@@ -1,12 +1,13 @@
 module "cluster" {
   source                       = "../../"
   allowed_ips                  = var.allowed_ips
+  allowed_connect_cluster_ips  = var.allowed_connect_cluster_ips
+  account_name                 = var.account_name
   bastion_count                = var.bastion_count
   bastion_private_ip           = local.bastion_private_ip
   bastion_subnet               = data.aws_subnet_ids.public.ids[0]
   broker_private_ip            = local.broker_private_ip
   broker_protocol              = var.broker_protocol
-  broker_subnets               = [data.aws_subnet_ids.private.ids]
   common_tags                  = var.common_tags
   confluent_broker_version     = var.confluent_broker_version
   confluent_connect_version    = var.confluent_connect_version
@@ -15,22 +16,17 @@ module "cluster" {
   confluent_schema_version     = var.confluent_schema_version
   confluent_zookeeper_version  = var.confluent_zookeeper_version
   connect_private_ip           = local.connect_private_ip
-  connect_subnets              = [data.aws_subnet_ids.private.ids]
-  consumer_instance_type       = var.consumer_instance_type
   consumer_subnets             = [data.aws_subnet_ids.private.ids[0]]
-  control_center_instance_type = var.control_center_instance_type
   control_center_private_ip    = local.control_center_private_ip
   control_center_subnets       = [data.aws_subnet_ids.private.ids[0]]
   environment                  = var.environment
   key_name                     = "id_rsa.${var.account_name}"
   name                         = var.cluster_name
   producer_subnets             = [data.aws_subnet_ids.private.ids[0], data.aws_subnet_ids.private.ids[1]]
-  schema_instance_type         = var.schema_instance_type
   schema_private_ip            = local.schema_private_ip
-  schema_subnets               = [data.aws_subnet_ids.private.ids]
+  private_subnets              = [data.aws_subnet_ids.private.ids]
   source_ami_account_id        = data.aws_caller_identity.current.account_id
   vpc_cidr                     = data.aws_vpc.vpc.cidr_block
-  zk_instance_type             = var.zk_instance_type
   zk_private_ip                = local.zk_private_ip
   zk_subnets                   = [data.aws_subnet_ids.private.ids[0], data.aws_subnet_ids.private.ids[1], data.aws_subnet_ids.private.ids[1], data.aws_subnet_ids.private.ids[2], data.aws_subnet_ids.private.ids[2]]
 }

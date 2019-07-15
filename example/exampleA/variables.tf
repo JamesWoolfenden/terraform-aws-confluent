@@ -1,17 +1,28 @@
 variable "account_name" {}
+
 variable "allowed_ips" {}
+
 variable "bastion_count" {}
+
 variable "broker_protocol" {}
+
 variable "cluster_name" {}
+
 variable "confluent_broker_version" {}
+
 variable "confluent_connect_version" {}
+
 variable "confluent_control_version" {}
+
 variable "confluent_license" {}
+
 variable "confluent_schema_version" {}
+
 variable "confluent_zookeeper_version" {}
+
 variable "dns_zone" {}
+
 variable "environment" {}
-variable "zk_instance_type" {}
 
 locals {
   bastion_private_ip        = cidrhost(data.aws_subnet.public.0.cidr_block, 10)

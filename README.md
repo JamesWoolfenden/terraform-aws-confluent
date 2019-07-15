@@ -30,7 +30,6 @@ module "confluent" {
 | broker_instance_type |  | string | - | yes |
 | broker_private_ip |  | list | - | yes |
 | broker_protocol |  | string | - | yes |
-| broker_subnets |  | list | - | yes |
 | client_instance_type |  | string | - | yes |
 | common_tags |  | map | - | yes |
 | confluent_broker_version |  | string | - | yes |
@@ -53,7 +52,6 @@ module "confluent" {
 | producer_subnets | clients | list | - | yes |
 | schema_instance_type |  | string | - | yes |
 | schema_private_ip |  | list | - | yes |
-| schema_subnets |  | list | - | yes |
 | source_ami_account_id |  | string | - | yes |
 | vpc_cidr |  | string | - | yes |
 | zk_instance_type |  | string | - | yes |

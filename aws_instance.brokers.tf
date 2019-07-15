@@ -5,7 +5,7 @@ resource "aws_instance" "brokers" {
   instance_type          = var.broker_instance_type
   key_name               = var.key_name
   private_ip             = element(var.broker_private_ip, count.index)
-  subnet_id              = element(var.broker_subnets, count.index)
+  subnet_id              = element(var.private_subnets, count.index)
   user_data              = element(data.template_file.broker_user_data.*.rendered, count.index)
   vpc_security_group_ids = [aws_security_group.brokers.id, aws_security_group.ssh.id]
 

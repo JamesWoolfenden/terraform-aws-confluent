@@ -1,6 +1,6 @@
 resource "aws_route53_record" "connect_cluster" {
   count   = "${length(var.connect_private_ip)}"
-  zone_id = "${var.private_zone_id}"
+  zone_id = "${data.aws_route53_zone.private.zone_id}"
   name    = "connectcluster${count.index + 1}"
   type    = "A"
   ttl     = "60"

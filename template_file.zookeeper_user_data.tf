@@ -9,9 +9,9 @@ data "template_file" "zookeeper_user_data" {
     number                  = count.index + 1
     private_dns_zone        = replace(data.aws_route53_zone.selected.name, "/[.]$/", "")
     stunnel_cert            = data.aws_s3_bucket_object.stunnel_cert.body
-    zk-client-listener-port = var.zk-client-listener-port
-    zk-leader-listener-port = var.zk-leader-listener-port
-    zk-peer-listener-port   = var.zk-peer-listener-port
+    zk-client-listener-port = var.zookeeper["client-listener-port"]
+    zk-leader-listener-port = var.zookeeper["leader-listener-port"]
+    zk-peer-listener-port   = var.zookeeper["peer-listener-port"]
     zk_private_local_ip     = element(var.zk_private_ip, count.index)
     zk_private_ip_0         = var.zk_private_ip[0]
     zk_private_ip_1         = var.zk_private_ip[1]

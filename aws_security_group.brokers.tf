@@ -20,7 +20,7 @@ resource "aws_security_group" "brokers" {
     protocol        = "TCP"
     self            = true
     security_groups = [aws_security_group.connect.id]
-    cidr_blocks     = ["${var.allowed_connect_cluster_ips}"]
+    cidr_blocks     = [var.allowed_connect_cluster_range]
   }
 
   # Allow ping from my ip, self, bastion

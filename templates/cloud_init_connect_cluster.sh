@@ -27,4 +27,3 @@ sed -i "s/REPLACEMEWITHSED/connectcluster${count}.${private_dns_zone}/g" /etc/ka
 systemctl stop firewalld
 systemctl daemon-reload
 systemctl restart connect
-

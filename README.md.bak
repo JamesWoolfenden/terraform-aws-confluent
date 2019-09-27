@@ -19,59 +19,7 @@ module "confluent" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| account\_name |  | string | n/a | yes |
-| allowed\_connect\_cluster\_range |  | string | n/a | yes |
-| allowed\_ips |  | list | `[]` | no |
-| bastion\_count |  | string | `"1"` | no |
-| bastion\_instance\_type | Size of Bastion instance | string | `"t2.micro"` | no |
-| bastion\_private\_ip |  | string | n/a | yes |
-| bastion\_subnet |  | string | n/a | yes |
-| broker\_instance\_type | Size of broker instance | string | `"t2.micro"` | no |
-| broker\_private\_ip |  | list | n/a | yes |
-| broker\_protocol |  | string | n/a | yes |
-| broker\_subnets |  | list | n/a | yes |
-| client\_instance\_type | Size of client instance | string | `"t2.micro"` | no |
-| common\_tags |  | map | n/a | yes |
-| confluent\_broker\_version |  | string | n/a | yes |
-| confluent\_connect\_version |  | string | n/a | yes |
-| confluent\_control\_version |  | string | n/a | yes |
-| confluent\_license |  | string | `"123456789"` | no |
-| confluent\_schema\_version |  | string | `""` | no |
-| confluent\_zookeeper\_version |  | string | `""` | no |
-| connect\_instance\_type | Size of broker instance | string | `"t2.micro"` | no |
-| connect\_private\_ip |  | list | n/a | yes |
-| consumer\_instance\_type | Size of consumer instance | string | `"t2.micro"` | no |
-| consumer\_subnets |  | list | n/a | yes |
-| control\_center\_instance\_type | Size of control center instance | string | `"t2.micro"` | no |
-| control\_center\_private\_ip |  | list | n/a | yes |
-| control\_center\_subnets |  | list | n/a | yes |
-| domain |  | string | n/a | yes |
-| environment |  | string | n/a | yes |
-| key\_name |  | string | n/a | yes |
-| name |  | string | n/a | yes |
-| private\_subnets |  | list | n/a | yes |
-| producer\_subnets |  | list | n/a | yes |
-| roles |  | list | `[ "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM", "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy" ]` | no |
-| schema\_instance\_type |  | string | `"t2.micro"` | no |
-| schema\_private\_ip |  | list | n/a | yes |
-| source\_ami\_account\_id |  | string | n/a | yes |
-| vpc\_cidr |  | string | n/a | yes |
-| zk\_private\_ip |  | list | n/a | yes |
-| zk\_subnets |  | list | n/a | yes |
-| zookeeper |  | map | `{ "client-listener-port": "5570", "instance_type": "t2.micro", "leader-listener-port": "5590", "peer-listener-port": "5580" }` | no |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| bastion\_ip |  |
-| public\_dns |  |
-| public\_ips |  |
-
+I_WANT_TO_BE_REPLACED
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Help

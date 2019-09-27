@@ -23,17 +23,17 @@ resource "aws_iam_role" "confluent_ssm_role" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "ssm-attach" {
-  role = aws_iam_role.confluent_ssm_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+
+variable "roles" {
+  type = list
+  default = [
+    "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
+    "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",
+  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]
 }
 
-resource "aws_iam_role_policy_attachment" "writetocloudwatch" {
-  role = aws_iam_role.confluent_ssm_role.name
-  policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
-}
-
-resource "aws_iam_role_policy_attachment" "CloudWatchAgentServerPolicy" {
-  role = aws_iam_role.confluent_ssm_role.name
-  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+resource "aws_iam_role_policy_attachment" "role-attach" {
+  count      = length(var.roles)
+  role       = aws_iam_role.confluent_ssm_role.name
+  policy_arn = var.roles[count.index]
 }

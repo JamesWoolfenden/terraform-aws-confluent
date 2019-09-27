@@ -50,4 +50,3 @@ sed -i "s/REPLACEMEWITHSED/broker${count}.${private_dns_zone}/g" /etc/kafka/serv
 systemctl stop firewalld
 systemctl daemon-reload
 #systemctl restart kafka
-

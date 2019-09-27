@@ -1,28 +1,63 @@
-variable "account_name" {}
+variable "account_name" {
+  type = string
+}
 
-variable "allowed_ips" {}
+variable "allowed_ips" {
+  type = list
+}
 
-variable "bastion_count" {}
+variable "allowed_connect_cluster_range" {
+  type = string
+}
 
-variable "broker_protocol" {}
+variable "bastion_count" {
+  type = string
+}
 
-variable "cluster_name" {}
+variable "broker_protocol" {
+  type = string
+}
 
-variable "confluent_broker_version" {}
+variable "cluster_name" {
+  type = string
+}
 
-variable "confluent_connect_version" {}
+variable "confluent_broker_version" {
+  type = string
+}
 
-variable "confluent_control_version" {}
+variable "confluent_connect_version" {
+  type = string
+}
 
-variable "confluent_license" {}
+variable "confluent_control_version" {
+  type = string
+}
 
-variable "confluent_schema_version" {}
+variable "confluent_license" {
+  type    = string
+  default = "123456789"
+}
 
-variable "confluent_zookeeper_version" {}
+variable "confluent_schema_version" {
+  type = string
+}
 
-variable "dns_zone" {}
+variable "confluent_zookeeper_version" {
+  type = string
+}
 
-variable "environment" {}
+variable "dns_zone" {
+  type = string
+}
+
+variable "environment" {
+  type = string
+}
+
+variable "domain" {
+  type = string
+}
 
 locals {
   bastion_private_ip        = cidrhost(data.aws_subnet.public.0.cidr_block, 10)

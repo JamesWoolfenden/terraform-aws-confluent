@@ -1,6 +1,6 @@
 resource "aws_route53_record" "zookeeper" {
   count   = length(var.zk_private_ip)
-  zone_id = data.aws_route53_zone.private.zone_id
+  zone_id = data.aws_route53_zone.selected.zone_id
   name    = "zkserver${count.index + 1}"
   type    = "A"
   ttl     = "60"

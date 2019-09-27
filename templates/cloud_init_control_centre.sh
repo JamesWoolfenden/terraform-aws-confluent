@@ -21,4 +21,3 @@ chown cp-kafka:confluent /etc/security/keytabs/controlcentre.service.keytab
 systemctl stop firewalld
 systemctl daemon-reload
 systemctl restart confluent-control-center
-

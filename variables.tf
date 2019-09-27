@@ -33,7 +33,7 @@ variable "broker_protocol" {
 }
 
 variable "client_instance_type" {
-  type = string
+  type        = string
   description = "Size of client instance"
   default     = "t2.micro"
 }
@@ -51,7 +51,8 @@ variable "confluent_control_version" {
 }
 
 variable "confluent_license" {
-  type = string
+  type    = string
+  default = "123456789"
 }
 
 variable "confluent_schema_version" {
@@ -62,7 +63,6 @@ variable "confluent_schema_version" {
 variable "confluent_zookeeper_version" {
   type    = string
   default = ""
-
 }
 
 variable "connect_instance_type" {
@@ -83,14 +83,17 @@ variable "control_center_instance_type" {
   default     = "t2.micro"
 }
 
-variable "environment" {}
+variable "environment" {
+  type = string
+}
 
-variable "key_name" {}
+variable "key_name" {
+  type = string
+}
 
 variable "name" {
   type = string
 }
-
 
 variable "schema_instance_type" {
   type    = string
@@ -105,20 +108,17 @@ variable "vpc_cidr" {
   type = string
 }
 
-
-
 variable "bastion_count" {
   default = 1
 }
 
-variable "allowed_connect_cluster_ips" {
-  type = list
+variable "allowed_connect_cluster_range" {
+  type = string
 }
 
 variable "zk_subnets" {
   type = list
 }
-
 
 variable "control_center_subnets" {
   type = list
@@ -131,6 +131,11 @@ variable "private_subnets" {
 variable "producer_subnets" {
   type = list
 }
+
+variable "broker_subnets" {
+  type = list
+}
+
 
 variable "consumer_subnets" {
   type = list
@@ -156,23 +161,20 @@ variable "zk_private_ip" {
   type = list
 }
 
+variable "domain" {
+  type = string
+}
+
 variable "common_tags" {
-  type = "map"
+  type = map
 }
 
-variable "zk-client-listener-port" {
-  default = "5570"
-}
-
-variable "zk-peer-listener-port" {
-  default = "5580"
-}
-
-variable "zk-leader-listener-port" {
-  default = "5590"
-}
-
-variable "zk_instance_type" {
-  type    = string
-  default = "t2.micro"
+variable "zookeeper" {
+  type = map
+  default = {
+    instance_type        = "t2.micro"
+    leader-listener-port = "5590"
+    peer-listener-port   = "5580"
+    client-listener-port = "5570"
+  }
 }

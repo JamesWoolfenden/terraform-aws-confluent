@@ -1,6 +1,6 @@
 resource "aws_route53_record" "control_centre" {
   count   = "${length(var.control_center_private_ip)}"
-  zone_id = "${data.aws_route53_zone.private.zone_id}"
+  zone_id = "${data.aws_route53_zone.selected.zone_id}"
   name    = "controlcentre"
   type    = "A"
   ttl     = "60"

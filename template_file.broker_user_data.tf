@@ -2,7 +2,7 @@ data "template_file" "broker_user_data" {
   count    = length(var.broker_private_ip)
   template = file("${path.module}/templates/cloud_init_kafka_broker.sh")
 
-  vars {
+  vars = {
     account_name     = var.account_name
     aws_id           = data.aws_caller_identity.current.account_id
     count            = count.index + 1

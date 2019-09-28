@@ -3,8 +3,6 @@ resource "aws_security_group" "connect" {
   description = "Connect security group - Managed by Terraform"
   vpc_id      = data.aws_vpc.confluent.id
 
-  # connect http interface - only accessable on host, without this
-  # control-center needs access
   ingress {
     from_port       = 8083
     to_port         = 8083
@@ -13,7 +11,6 @@ resource "aws_security_group" "connect" {
     security_groups = ["${aws_security_group.control-center.id}"]
   }
 
-  # from bastion
   ingress {
     from_port       = 22
     to_port         = 22
@@ -28,6 +25,5 @@ resource "aws_security_group" "connect" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${merge(var.common_tags,
-  map("Name", "${var.environment}-CONNECT-SG"))}"
+  tags = var.common_tags
 }

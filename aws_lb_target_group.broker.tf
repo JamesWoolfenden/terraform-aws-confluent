@@ -1,5 +1,5 @@
 resource "aws_lb_target_group" "broker" {
-  name     = "${var.environment}-BROKER-LB-TG"
+  name     = "BROKER"
   port     = 6668
   protocol = "TCP"
   vpc_id   = data.aws_vpc.confluent.id

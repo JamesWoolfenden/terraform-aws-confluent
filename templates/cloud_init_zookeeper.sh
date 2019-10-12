@@ -19,7 +19,7 @@ chown -R cp-kafka:confluent /var/lib/zookeeper/myid
 chown -R cp-kafka:confluent /etc/kafka/*.properties
 
 mkdir -p /etc/security/keytabs
-aws s3 --region eu-west-2 cp s3://kerberos-${aws_id}/zkserver${number}.${account_name}.keytab /etc/security/keytabs/zookeeper.service.keytab
+aws s3 --region ${region} cp s3://kerberos-${aws_id}/zkserver${number}.${account_name}.keytab /etc/security/keytabs/zookeeper.service.keytab
 
 chown cp-kafka:confluent /etc/security/keytabs/zookeeper.service.keytab
 

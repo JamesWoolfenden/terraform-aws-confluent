@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssh" {
-  name        = "${var.environment}-SSH"
+  name        = "SSH"
   description = "Managed by Terraform"
   vpc_id      = data.aws_vpc.confluent.id
 
@@ -9,7 +9,7 @@ resource "aws_security_group" "ssh" {
     to_port     = 0
     protocol    = "icmp"
     self        = true
-    cidr_blocks = ["${var.allowed_ips}/32"]
+    cidr_blocks = var.allowed_ranges
   }
 
   # from bastion

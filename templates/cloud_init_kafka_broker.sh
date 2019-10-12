@@ -36,12 +36,12 @@ broker.id=${count}
 sed -i 's/Restart=no/Restart=always/g' /usr/lib/systemd/system/kafka.service
 
 mkdir -p /var/ssl/private
-aws s3 --region eu-west-2 cp s3://certificates-${aws_id}/confluent.kafka-broker/$(hostname) /var/ssl/private --recursive
+aws s3 --region ${region} cp s3://certificates-${aws_id}/confluent.kafka-broker/$(hostname) /var/ssl/private --recursive
 chown -R cp-kafka:confluent /var/ssl/private/*
 
 
 mkdir -p /etc/security/keytabs
-aws s3 --region eu-west-2 cp s3://kerberos-${aws_id}/broker${count}.${account_name}.keytab /etc/security/keytabs/kafka.service.keytab
+aws s3 --region ${region} cp s3://kerberos-${aws_id}/broker${count}.${account_name}.keytab /etc/security/keytabs/kafka.service.keytab
 chown cp-kafka:confluent /etc/security/keytabs/kafka.service.keytab
 
 sed -i "s/REPLACEMEWITHSED/broker${count}.${private_dns_zone}/g" /etc/kafka/kafka_server_jaas.conf

@@ -1,8 +1,6 @@
-[![Slalom][logo]](https://slalom.com)
-
 # terraform-aws-confluent [![Build Status](https://api.travis-ci.com/JamesWoolfenden/terraform-aws-ecr.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-aws-ecr) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-ecr.svg)](https://github.com/JamesWoolfenden/terraform-aws-ecr/releases/latest)
 
-Terraform module to provision Confluent Kafka.
+Terraform module to provision Confluent Kafka. This works with Confluent 4, you'll need to have built the AMI's that go with this. It's based a classic AWS 6 subnet (3 private 3 public in three AZs) model.
 
 ---
 
@@ -14,7 +12,37 @@ Include this repository as a module in your existing terraform code:
 
 ```hcl
 module "confluent" {
-  source           = "github.com/JamesWoolfenden/terraform-aws-confluent"
+  source                        = "github.com/JamesWoolfenden/terraform-aws-confluent"
+  allowed_ranges                = var.allowed_ranges
+  allowed_connect_cluster_range = var.allowed_connect_cluster_range
+  account_name                  = var.account_name
+  bastion_count                 = var.bastion_count
+  bastion_private_ip            = local.bastion_private_ip
+  bastion_subnet                = data.aws_subnet_ids.public.ids
+  broker_subnets                = data.aws_subnet_ids.private.ids
+  broker_private_ip             = local.broker_private_ip
+  broker_protocol               = var.broker_protocol
+  common_tags                   = var.common_tags
+  confluent_broker_version      = var.confluent_broker_version
+  confluent_connect_version     = var.confluent_connect_version
+  confluent_control_version     = var.confluent_control_version
+  confluent_license             = var.confluent_license
+  confluent_schema_version      = var.confluent_schema_version
+  confluent_zookeeper_version   = var.confluent_zookeeper_version
+  connect_private_ip            = local.connect_private_ip
+  consumer_subnets              = [data.aws_subnet_ids.private.ids]
+  control_center_private_ip     = local.control_center_private_ip
+  control_center_subnets        = [data.aws_subnet_ids.private.ids]
+  domain                        = var.domain
+  key_name                      = "id_rsa.${var.account_name}"
+  name                          = var.cluster_name
+  producer_subnets              = [data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids]
+  schema_private_ip             = local.schema_private_ip
+  private_subnets               = [data.aws_subnet_ids.private.ids]
+  source_ami_account_id         = data.aws_caller_identity.current.account_id
+  vpc_cidr                      = data.aws_vpc.vpc.cidr_block
+  zk_private_ip                 = local.zk_private_ip
+  zk_subnets                    = [data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids]
 }
 ```
 

@@ -2,12 +2,12 @@ variable "account_name" {
   type = string
 }
 
-variable "allowed_ips" {
+variable "allowed_ranges" {
   type = list
 }
 
 variable "allowed_connect_cluster_range" {
-  type = string
+  type = list
 }
 
 variable "bastion_count" {
@@ -48,10 +48,6 @@ variable "confluent_zookeeper_version" {
 }
 
 variable "dns_zone" {
-  type = string
-}
-
-variable "environment" {
   type = string
 }
 

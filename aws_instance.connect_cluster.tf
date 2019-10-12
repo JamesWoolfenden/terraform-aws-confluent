@@ -1,7 +1,7 @@
 resource "aws_instance" "connect-cluster" {
   ami                    = data.aws_ami.connect.id
   count                  = length(var.private_subnets)
-  iam_instance_profile   = aws_iam_instance_profile.confluent_ssm_profile.name
+  iam_instance_profile   = aws_iam_instance_profile.confluent_ssm.name
   instance_type          = var.connect_instance_type
   key_name               = var.key_name
   private_ip             = element(var.connect_private_ip, count.index)

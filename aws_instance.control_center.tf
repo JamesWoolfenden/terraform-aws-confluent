@@ -1,7 +1,7 @@
 resource "aws_instance" "control-center" {
   ami                    = data.aws_ami.control.id
   count                  = length(var.control_center_subnets)
-  iam_instance_profile   = aws_iam_instance_profile.confluent_ssm_profile.name
+  iam_instance_profile   = aws_iam_instance_profile.confluent_ssm.name
   instance_type          = var.control_center_instance_type
   key_name               = var.key_name
   private_ip             = element(var.control_center_private_ip, count.index)

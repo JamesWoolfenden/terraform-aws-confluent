@@ -1,5 +1,5 @@
 resource "aws_security_group" "control-center" {
-  name = "${var.environment}-CONTROL-CENTER-SG"
+  name = "CONTROL-CENTER"
 
   description = "control-center security group - Managed by Terraform"
   vpc_id      = data.aws_vpc.confluent.id
@@ -9,7 +9,7 @@ resource "aws_security_group" "control-center" {
     from_port   = 9021
     to_port     = 9021
     protocol    = "TCP"
-    cidr_blocks = ["${var.vpc_cidr}"]
+    cidr_blocks = [var.vpc_cidr]
   }
 
   # from bastion
@@ -17,7 +17,7 @@ resource "aws_security_group" "control-center" {
     from_port       = 22
     to_port         = 22
     protocol        = "TCP"
-    security_groups = ["${aws_security_group.bastions.id}"]
+    security_groups = [aws_security_group.bastions.id]
   }
 
   egress {
@@ -27,6 +27,5 @@ resource "aws_security_group" "control-center" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${merge(var.common_tags,
-  map("Name", "${var.environment}-CONTROL-CENTER-SG"))}"
+  tags = var.common_tags
 }

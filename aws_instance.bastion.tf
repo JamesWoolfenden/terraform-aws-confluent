@@ -3,7 +3,7 @@ resource "aws_instance" "bastion" {
   ami                         = data.aws_ami.redhat.id
   instance_type               = var.bastion_instance_type
   private_ip                  = var.bastion_private_ip
-  iam_instance_profile        = aws_iam_instance_profile.confluent_ssm_profile.name
+  iam_instance_profile        = aws_iam_instance_profile.confluent_ssm.name
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.bastions.id]
   subnet_id                   = var.bastion_subnet

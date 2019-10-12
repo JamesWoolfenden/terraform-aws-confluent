@@ -1,11 +1,13 @@
 variable "account_name" {
-  type = string
+  description = "Name of AWS account type, Developerment. testing or production to help with naming"
+  type        = string
+  default     = "development"
 }
 
-variable "allowed_ips" {
+variable "allowed_ranges" {
   type        = list
   default     = []
-  description = ""
+  description = "A list of allowed IPs that can connect"
 }
 
 variable "bastion_instance_type" {
@@ -15,11 +17,14 @@ variable "bastion_instance_type" {
 }
 
 variable "bastion_private_ip" {
-  type = string
+  description = "Allows you to specify the private IP"
+  type        = string
+  default     = ""
 }
 
 variable "bastion_subnet" {
-  type = string
+  type        = string
+  description = "The id name of the subnet to put the bastion in."
 }
 
 variable "broker_instance_type" {
@@ -29,7 +34,9 @@ variable "broker_instance_type" {
 }
 
 variable "broker_protocol" {
-  type = string
+  type        = string
+  description = "Broker protocol setting"
+  default     = "SSL"
 }
 
 variable "client_instance_type" {
@@ -39,30 +46,39 @@ variable "client_instance_type" {
 }
 
 variable "confluent_broker_version" {
-  type = string
+  type        = string
+  description = "The AMI version number or label to reqtrieve from AWS"
+  default     = ""
 }
 
 variable "confluent_connect_version" {
-  type = string
+  type        = string
+  description = "The AMI version number or label to reqtrieve from AWS"
+  default     = ""
 }
 
 variable "confluent_control_version" {
-  type = string
+  type        = string
+  description = "The AMI version number or label to reqtrieve from AWS"
+  default     = ""
 }
 
 variable "confluent_license" {
-  type    = string
-  default = "123456789"
+  type        = string
+  default     = "123456789"
+  description = "Your Confluent licence"
 }
 
 variable "confluent_schema_version" {
-  type    = string
-  default = ""
+  type        = string
+  description = "The AMI version number or label to retrieved from AWS"
+  default     = ""
 }
 
 variable "confluent_zookeeper_version" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
+  description = "The AMI version number or label to retrieved from AWS"
 }
 
 variable "connect_instance_type" {
@@ -81,10 +97,6 @@ variable "control_center_instance_type" {
   type        = string
   description = "Size of control center instance"
   default     = "t2.micro"
-}
-
-variable "environment" {
-  type = string
 }
 
 variable "key_name" {
@@ -113,7 +125,7 @@ variable "bastion_count" {
 }
 
 variable "allowed_connect_cluster_range" {
-  type = string
+  type = list
 }
 
 variable "zk_subnets" {
@@ -135,7 +147,6 @@ variable "producer_subnets" {
 variable "broker_subnets" {
   type = list
 }
-
 
 variable "consumer_subnets" {
   type = list
@@ -177,4 +188,8 @@ variable "zookeeper" {
     peer-listener-port   = "5580"
     client-listener-port = "5570"
   }
+}
+
+variable "subnet_tag" {
+  default="*Private*"
 }

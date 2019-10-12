@@ -1,5 +1,5 @@
 resource "aws_security_group" "zookeepers" {
-  name        = "${var.environment}-ZOOKEEPER"
+  name        = "ZOOKEEPER"
   description = "Zookeeper security group - Managed by Terraform"
   vpc_id      = data.aws_vpc.confluent.id
 

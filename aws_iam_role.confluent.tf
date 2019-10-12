@@ -1,6 +1,6 @@
 resource "aws_iam_role_policy" "confluent" {
-  name   = "${var.environment}-CONFLUENT"
-  role   = aws_iam_role.confluent_ssm_role.id
+  name   = "CONFLUENT"
+  role   = aws_iam_role.confluent_ssm.id
   policy = data.aws_iam_policy_document.confluent.json
 }
 
@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "confluent" {
     actions = [
       "s3:PutObject",
       "s3:ListObjects",
-    "s3:GetObject"]
+      "s3:GetObject"]
     resources = ["*"]
 
   }

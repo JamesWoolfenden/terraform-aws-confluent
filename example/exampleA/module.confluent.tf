@@ -1,6 +1,6 @@
 module "cluster" {
   source                        = "../../"
-  allowed_ips                   = var.allowed_ips
+  allowed_ranges                = var.allowed_ranges
   allowed_connect_cluster_range = var.allowed_connect_cluster_range
   account_name                  = var.account_name
   bastion_count                 = var.bastion_count
@@ -21,7 +21,6 @@ module "cluster" {
   control_center_private_ip     = local.control_center_private_ip
   control_center_subnets        = [data.aws_subnet_ids.private.ids]
   domain                        = var.domain
-  environment                   = var.environment
   key_name                      = "id_rsa.${var.account_name}"
   name                          = var.cluster_name
   producer_subnets              = [data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids]

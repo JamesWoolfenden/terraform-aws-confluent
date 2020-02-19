@@ -9,7 +9,7 @@ variable "roles" {
   default = [
     "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
     "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",
-    "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]
+  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]
 }
 
 resource "aws_iam_role_policy_attachment" "role-attach" {
@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "ssm" {
       identifiers = [
         "s3.amazonaws.com",
         "ec2.amazonaws.com",
-        "ssm.amazonaws.com"]
+      "ssm.amazonaws.com"]
     }
   }
 

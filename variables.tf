@@ -191,5 +191,5 @@ variable "zookeeper" {
 }
 
 variable "subnet_tag" {
-  default="*Private*"
+  default = "*Private*"
 }

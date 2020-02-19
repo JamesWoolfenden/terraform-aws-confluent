@@ -5,4 +5,3 @@ data "aws_subnet_ids" "subnets" {
     Name = var.subnet_tag
   }
 }
-

@@ -9,7 +9,7 @@ resource "aws_instance" "brokers" {
   user_data              = element(data.template_file.broker_user_data.*.rendered, count.index)
   vpc_security_group_ids = [aws_security_group.brokers.id, aws_security_group.ssh.id]
 
-  depends_on = ["aws_instance.zookeeper"]
+  depends_on = [aws_instance.zookeeper]
 
   root_block_device {
     volume_size = 32 # 32GB
@@ -34,7 +34,7 @@ resource "aws_instance" "brokers" {
   }
 
   lifecycle {
-    ignore_changes = ["user_data"]
+    ignore_changes = [user_data]
   }
 
   tags = var.common_tags

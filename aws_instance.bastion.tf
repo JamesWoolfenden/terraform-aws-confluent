@@ -9,10 +9,10 @@ resource "aws_instance" "bastion" {
   subnet_id                   = var.bastion_subnet
   key_name                    = var.key_name
 
-  depends_on = ["aws_security_group.bastions"]
+  depends_on = [aws_security_group.bastions]
 
   lifecycle {
-    ignore_changes = ["user_data"]
+    ignore_changes = [user_data]
   }
 
   tags = var.common_tags

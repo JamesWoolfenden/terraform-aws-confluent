@@ -19,7 +19,7 @@ resource "aws_instance" "zookeeper" {
   }
 
   lifecycle {
-    ignore_changes = ["user_data"]
+    ignore_changes = [user_data]
   }
 
   tags = var.common_tags

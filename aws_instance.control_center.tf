@@ -9,14 +9,14 @@ resource "aws_instance" "control-center" {
   user_data              = element(data.template_file.control_centre_user_data.*.rendered, count.index)
   vpc_security_group_ids = [aws_security_group.ssh.id, aws_security_group.control-center.id]
 
-  depends_on = ["aws_lb.broker"]
+  depends_on = [aws_lb.broker]
 
   root_block_device {
     volume_size = 300 # 300 GB
   }
 
   lifecycle {
-    ignore_changes = ["user_data"]
+    ignore_changes = [user_data]
   }
 
   tags = var.common_tags

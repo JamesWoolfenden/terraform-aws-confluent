@@ -10,14 +10,14 @@ resource "aws_instance" "connect-cluster" {
 
   user_data = element(data.template_file.connect_cluster_user_data.*.rendered, count.index)
 
-  depends_on = ["aws_instance.schema-registry"]
+  depends_on = [aws_instance.schema-registry]
 
   root_block_device {
     volume_size = 60 # 60GB
   }
 
   lifecycle {
-    ignore_changes = ["user_data"]
+    ignore_changes = [user_data]
   }
 
   tags = var.common_tags

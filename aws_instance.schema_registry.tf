@@ -9,14 +9,14 @@ resource "aws_instance" "schema-registry" {
   user_data              = element(data.template_file.schema_registry_user_data.*.rendered, count.index)
   vpc_security_group_ids = [aws_security_group.ssh.id, aws_security_group.schema.id]
 
-  depends_on = ["aws_lb.schema"]
+  depends_on = [aws_lb.schema]
 
   root_block_device {
     volume_size = 32 # 32GB
   }
 
   lifecycle {
-    ignore_changes = ["user_data"]
+    ignore_changes = [user_data]
   }
 
   tags = var.common_tags

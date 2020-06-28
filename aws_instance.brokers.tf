@@ -13,6 +13,7 @@ resource "aws_instance" "brokers" {
 
   root_block_device {
     volume_size = 32 # 32GB
+    encrypted   = true
   }
 
   ebs_block_device {

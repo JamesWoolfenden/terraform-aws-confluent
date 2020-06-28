@@ -13,6 +13,7 @@ resource "aws_instance" "schema-registry" {
 
   root_block_device {
     volume_size = 32 # 32GB
+    encrypted   = true
   }
 
   lifecycle {

@@ -14,6 +14,7 @@ resource "aws_instance" "connect-cluster" {
 
   root_block_device {
     volume_size = 60 # 60GB
+    encrypted   = true
   }
 
   lifecycle {

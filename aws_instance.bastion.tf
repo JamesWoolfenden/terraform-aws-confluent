@@ -15,5 +15,10 @@ resource "aws_instance" "bastion" {
     ignore_changes = [user_data]
   }
 
+  root_block_device {
+    volume_size = 16
+    encrypted   = true
+  }
+
   tags = var.common_tags
 }

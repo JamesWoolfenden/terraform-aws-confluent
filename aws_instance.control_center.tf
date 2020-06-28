@@ -13,6 +13,7 @@ resource "aws_instance" "control-center" {
 
   root_block_device {
     volume_size = 300 # 300 GB
+    encrypted   = true
   }
 
   lifecycle {

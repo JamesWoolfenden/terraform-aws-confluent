@@ -16,6 +16,7 @@ resource "aws_instance" "zookeeper" {
 
   root_block_device {
     volume_size = 32
+    encrypted   = true
   }
 
   lifecycle {

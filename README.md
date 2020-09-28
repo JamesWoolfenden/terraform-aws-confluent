@@ -52,70 +52,69 @@ module "confluent" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 ## Requirements
 
 No requirements.
 
 ## Providers
 
-| Name     | Version |
-| -------- | ------- |
-| aws      | n/a     |
-| template | n/a     |
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| template | n/a |
 
 ## Inputs
 
-| Name                          | Description                                                                        | Type     | Default                                                                                                                                                                                             | Required |
-| ----------------------------- | ---------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: |
-| account_name                  | Name of AWS account type, Developerment. testing or production to help with naming | `string` | `"development"`                                                                                                                                                                                     |    no    |
-| allowed_connect_cluster_range | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| allowed_ranges                | A list of allowed IPs that can connect                                             | `list`   | `[]`                                                                                                                                                                                                |    no    |
-| bastion_count                 | n/a                                                                                | `number` | `1`                                                                                                                                                                                                 |    no    |
-| bastion_instance_type         | Size of Bastion instance                                                           | `string` | `"t2.micro"`                                                                                                                                                                                        |    no    |
-| bastion_private_ip            | Allows you to specify the private IP                                               | `string` | `""`                                                                                                                                                                                                |    no    |
-| bastion_subnet                | The id name of the subnet to put the bastion in.                                   | `string` | n/a                                                                                                                                                                                                 |   yes    |
-| broker_instance_type          | Size of broker instance                                                            | `string` | `"t2.micro"`                                                                                                                                                                                        |    no    |
-| broker_private_ip             | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| broker_protocol               | Broker protocol setting                                                            | `string` | `"SSL"`                                                                                                                                                                                             |    no    |
-| broker_subnets                | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| client_instance_type          | Size of client instance                                                            | `string` | `"t2.micro"`                                                                                                                                                                                        |    no    |
-| common_tags                   | n/a                                                                                | `map`    | n/a                                                                                                                                                                                                 |   yes    |
-| confluent_broker_version      | The AMI version number or label to reqtrieve from AWS                              | `string` | `""`                                                                                                                                                                                                |    no    |
-| confluent_connect_version     | The AMI version number or label to reqtrieve from AWS                              | `string` | `""`                                                                                                                                                                                                |    no    |
-| confluent_control_version     | The AMI version number or label to reqtrieve from AWS                              | `string` | `""`                                                                                                                                                                                                |    no    |
-| confluent_license             | Your Confluent licence                                                             | `string` | `"123456789"`                                                                                                                                                                                       |    no    |
-| confluent_schema_version      | The AMI version number or label to retrieved from AWS                              | `string` | `""`                                                                                                                                                                                                |    no    |
-| confluent_zookeeper_version   | The AMI version number or label to retrieved from AWS                              | `string` | `""`                                                                                                                                                                                                |    no    |
-| connect_instance_type         | Size of broker instance                                                            | `string` | `"t2.micro"`                                                                                                                                                                                        |    no    |
-| connect_private_ip            | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| consumer_instance_type        | Size of consumer instance                                                          | `string` | `"t2.micro"`                                                                                                                                                                                        |    no    |
-| consumer_subnets              | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| control_center_instance_type  | Size of control center instance                                                    | `string` | `"t2.micro"`                                                                                                                                                                                        |    no    |
-| control_center_private_ip     | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| control_center_subnets        | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| domain                        | n/a                                                                                | `string` | n/a                                                                                                                                                                                                 |   yes    |
-| key_name                      | n/a                                                                                | `string` | n/a                                                                                                                                                                                                 |   yes    |
-| name                          | n/a                                                                                | `string` | n/a                                                                                                                                                                                                 |   yes    |
-| private_subnets               | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| producer_subnets              | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| roles                         | n/a                                                                                | `list`   | <pre>[<br> "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",<br> "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",<br> "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"<br>]</pre> |    no    |
-| schema_instance_type          | n/a                                                                                | `string` | `"t2.micro"`                                                                                                                                                                                        |    no    |
-| schema_private_ip             | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| source_ami_account_id         | n/a                                                                                | `string` | n/a                                                                                                                                                                                                 |   yes    |
-| subnet_tag                    | n/a                                                                                | `string` | `"*Private*"`                                                                                                                                                                                       |    no    |
-| vpc_cidr                      | n/a                                                                                | `string` | n/a                                                                                                                                                                                                 |   yes    |
-| zk_private_ip                 | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| zk_subnets                    | n/a                                                                                | `list`   | n/a                                                                                                                                                                                                 |   yes    |
-| zookeeper                     | n/a                                                                                | `map`    | <pre>{<br> "client-listener-port": "5570",<br> "instance_type": "t2.micro",<br> "leader-listener-port": "5590",<br> "peer-listener-port": "5580"<br>}</pre>                                         |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| account\_name | Name of AWS account type, Developerment. testing or production to help with naming | `string` | `"development"` | no |
+| allowed\_connect\_cluster\_range | n/a | `list` | n/a | yes |
+| allowed\_ranges | A list of allowed IPs that can connect | `list` | `[]` | no |
+| bastion\_count | n/a | `number` | `1` | no |
+| bastion\_instance\_type | Size of Bastion instance | `string` | `"t2.micro"` | no |
+| bastion\_private\_ip | Allows you to specify the private IP | `string` | `""` | no |
+| bastion\_subnet | The id name of the subnet to put the bastion in. | `string` | n/a | yes |
+| broker\_instance\_type | Size of broker instance | `string` | `"t2.micro"` | no |
+| broker\_private\_ip | n/a | `list` | n/a | yes |
+| broker\_protocol | Broker protocol setting | `string` | `"SSL"` | no |
+| broker\_subnets | n/a | `list` | n/a | yes |
+| client\_instance\_type | Size of client instance | `string` | `"t2.micro"` | no |
+| common\_tags | n/a | `map` | n/a | yes |
+| confluent\_broker\_version | The AMI version number or label to reqtrieve from AWS | `string` | `""` | no |
+| confluent\_connect\_version | The AMI version number or label to reqtrieve from AWS | `string` | `""` | no |
+| confluent\_control\_version | The AMI version number or label to reqtrieve from AWS | `string` | `""` | no |
+| confluent\_license | Your Confluent licence | `string` | `"123456789"` | no |
+| confluent\_schema\_version | The AMI version number or label to retrieved from AWS | `string` | `""` | no |
+| confluent\_zookeeper\_version | The AMI version number or label to retrieved from AWS | `string` | `""` | no |
+| connect\_instance\_type | Size of broker instance | `string` | `"t2.micro"` | no |
+| connect\_private\_ip | n/a | `list` | n/a | yes |
+| consumer\_instance\_type | Size of consumer instance | `string` | `"t2.micro"` | no |
+| consumer\_subnets | n/a | `list` | n/a | yes |
+| control\_center\_instance\_type | Size of control center instance | `string` | `"t2.micro"` | no |
+| control\_center\_private\_ip | n/a | `list` | n/a | yes |
+| control\_center\_subnets | n/a | `list` | n/a | yes |
+| domain | n/a | `string` | n/a | yes |
+| key\_name | n/a | `string` | n/a | yes |
+| name | n/a | `string` | n/a | yes |
+| private\_subnets | n/a | `list` | n/a | yes |
+| producer\_subnets | n/a | `list` | n/a | yes |
+| roles | n/a | `list` | <pre>[<br>  "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",<br>  "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",<br>  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"<br>]</pre> | no |
+| schema\_instance\_type | n/a | `string` | `"t2.micro"` | no |
+| schema\_private\_ip | n/a | `list` | n/a | yes |
+| source\_ami\_account\_id | n/a | `string` | n/a | yes |
+| subnet\_tag | n/a | `string` | `"*Private*"` | no |
+| vpc\_cidr | n/a | `string` | n/a | yes |
+| zk\_private\_ip | n/a | `list` | n/a | yes |
+| zk\_subnets | n/a | `list` | n/a | yes |
+| zookeeper | n/a | `map` | <pre>{<br>  "client-listener-port": "5570",<br>  "instance_type": "t2.micro",<br>  "leader-listener-port": "5590",<br>  "peer-listener-port": "5580"<br>}</pre> | no |
 
 ## Outputs
 
-| Name       | Description |
-| ---------- | ----------- |
-| bastion_ip | n/a         |
-| public_dns | n/a         |
-| public_ips | n/a         |
+| Name | Description |
+|------|-------------|
+| bastion\_ip | n/a |
+| public\_dns | n/a |
+| public\_ips | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

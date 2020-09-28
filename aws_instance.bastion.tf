@@ -20,5 +20,9 @@ resource "aws_instance" "bastion" {
     encrypted   = true
   }
 
+  metadata_options {
+    http_tokens = "required"
+  }
+
   tags = var.common_tags
 }

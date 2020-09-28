@@ -19,6 +19,8 @@ resource "aws_instance" "control-center" {
   lifecycle {
     ignore_changes = [user_data]
   }
-
+  metadata_options {
+    http_tokens = "required"
+  }
   tags = var.common_tags
 }

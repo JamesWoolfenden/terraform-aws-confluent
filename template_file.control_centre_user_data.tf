@@ -1,6 +1,6 @@
 data "template_file" "control_centre_user_data" {
   count    = length(var.control_center_private_ip)
-  template = file("${path.module}/templates/cloud_init_control_centre.sh")
+  template = file("${path.module}/templates/cloud_init_control_centre.sh.template")
 
   vars = {
     account_name        = var.account_name

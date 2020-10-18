@@ -67,7 +67,7 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| account\_name | Name of AWS account type, Developerment. testing or production to help with naming | `string` | `"development"` | no |
+| account\_name | Name of AWS account type e.g. Development. Testing or Production to help with naming | `string` | `"development"` | no |
 | allowed\_connect\_cluster\_range | n/a | `list` | n/a | yes |
 | allowed\_ranges | A list of allowed IPs that can connect | `list` | `[]` | no |
 | bastion\_count | n/a | `number` | `1` | no |
@@ -80,9 +80,9 @@ No requirements.
 | broker\_subnets | n/a | `list` | n/a | yes |
 | client\_instance\_type | Size of client instance | `string` | `"t2.micro"` | no |
 | common\_tags | n/a | `map` | n/a | yes |
-| confluent\_broker\_version | The AMI version number or label to reqtrieve from AWS | `string` | `""` | no |
-| confluent\_connect\_version | The AMI version number or label to reqtrieve from AWS | `string` | `""` | no |
-| confluent\_control\_version | The AMI version number or label to reqtrieve from AWS | `string` | `""` | no |
+| confluent\_broker\_version | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
+| confluent\_connect\_version | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
+| confluent\_control\_version | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
 | confluent\_license | Your Confluent licence | `string` | `"123456789"` | no |
 | confluent\_schema\_version | The AMI version number or label to retrieved from AWS | `string` | `""` | no |
 | confluent\_zookeeper\_version | The AMI version number or label to retrieved from AWS | `string` | `""` | no |

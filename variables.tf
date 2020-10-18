@@ -1,5 +1,5 @@
 variable "account_name" {
-  description = "Name of AWS account type, Developerment. testing or production to help with naming"
+  description = "Name of AWS account type e.g. Development. Testing or Production to help with naming"
   type        = string
   default     = "development"
 }
@@ -47,19 +47,19 @@ variable "client_instance_type" {
 
 variable "confluent_broker_version" {
   type        = string
-  description = "The AMI version number or label to reqtrieve from AWS"
+  description = "The AMI version number or label to retrieve from AWS"
   default     = ""
 }
 
 variable "confluent_connect_version" {
   type        = string
-  description = "The AMI version number or label to reqtrieve from AWS"
+  description = "The AMI version number or label to retrieve from AWS"
   default     = ""
 }
 
 variable "confluent_control_version" {
   type        = string
-  description = "The AMI version number or label to reqtrieve from AWS"
+  description = "The AMI version number or label to retrieve from AWS"
   default     = ""
 }
 

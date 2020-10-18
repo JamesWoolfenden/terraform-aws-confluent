@@ -1,6 +1,6 @@
 data "template_file" "connect_cluster_user_data" {
   count    = length(var.connect_private_ip)
-  template = file("${path.module}/templates/cloud_init_connect_cluster.sh")
+  template = file("${path.module}/templates/cloud_init_connect_cluster.sh.template")
 
   vars = {
     account_name        = var.account_name

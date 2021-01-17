@@ -1,4 +1,5 @@
 resource "aws_lb" "broker" {
+  #checkov:skip=CKV_AWS_91: "Ensure the ELBv2 (Application/Network) has access logging enabled"
   enable_deletion_protection = false
   internal                   = true
   load_balancer_type         = "network"

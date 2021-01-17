@@ -1,5 +1,5 @@
 resource "aws_instance" "bastion" {
-  #checkov:skip=CKV_AWS_88: "EC2 instance should not have public IP.
+  #checkov:skip=CKV_AWS_88: "EC2 instance should not have public IP."
   count                       = var.bastion_count
   ami                         = data.aws_ami.redhat.id
   instance_type               = var.bastion_instance_type

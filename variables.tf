@@ -5,7 +5,7 @@ variable "account_name" {
 }
 
 variable "allowed_ranges" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "A list of allowed IPs that can connect"
 }
@@ -125,51 +125,51 @@ variable "bastion_count" {
 }
 
 variable "allowed_connect_cluster_range" {
-  type = list
+  type = list(any)
 }
 
 variable "zk_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "control_center_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "private_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "producer_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "broker_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "consumer_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "broker_private_ip" {
-  type = list
+  type = list(any)
 }
 
 variable "control_center_private_ip" {
-  type = list
+  type = list(any)
 }
 
 variable "connect_private_ip" {
-  type = list
+  type = list(any)
 }
 
 variable "schema_private_ip" {
-  type = list
+  type = list(any)
 }
 
 variable "zk_private_ip" {
-  type = list
+  type = list(any)
 }
 
 variable "domain" {
@@ -177,11 +177,11 @@ variable "domain" {
 }
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 variable "zookeeper" {
-  type = map
+  type = map(any)
   default = {
     instance_type        = "t2.micro"
     leader-listener-port = "5590"

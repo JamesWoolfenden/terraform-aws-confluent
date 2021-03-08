@@ -67,23 +67,54 @@ No requirements.
 | aws | n/a |
 | template | n/a |
 
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_ami](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) |
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
+| [aws_iam_instance_profile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) |
+| [aws_iam_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) |
+| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) |
+| [aws_instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) |
+| [aws_lb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) |
+| [aws_lb_listener](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener) |
+| [aws_lb_target_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group) |
+| [aws_lb_target_group_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment) |
+| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) |
+| [aws_route53_record](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) |
+| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) |
+| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) |
+| [aws_s3_bucket_object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/s3_bucket_object) |
+| [aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) |
+| [aws_subnet_ids](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet_ids) |
+| [aws_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) |
+| [aws_vpc_endpoint_service](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint_service) |
+| [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | account\_name | Name of AWS account type e.g. Development. Testing or Production to help with naming | `string` | `"development"` | no |
-| allowed\_connect\_cluster\_range | n/a | `list` | n/a | yes |
-| allowed\_ranges | A list of allowed IPs that can connect | `list` | `[]` | no |
+| allowed\_connect\_cluster\_range | n/a | `list(any)` | n/a | yes |
+| allowed\_ranges | A list of allowed IPs that can connect | `list(any)` | `[]` | no |
 | bastion\_count | n/a | `number` | `1` | no |
 | bastion\_instance\_type | Size of Bastion instance | `string` | `"t2.micro"` | no |
 | bastion\_private\_ip | Allows you to specify the private IP | `string` | `""` | no |
 | bastion\_subnet | The id name of the subnet to put the bastion in. | `string` | n/a | yes |
 | broker\_instance\_type | Size of broker instance | `string` | `"t2.micro"` | no |
-| broker\_private\_ip | n/a | `list` | n/a | yes |
+| broker\_private\_ip | n/a | `list(any)` | n/a | yes |
 | broker\_protocol | Broker protocol setting | `string` | `"SSL"` | no |
-| broker\_subnets | n/a | `list` | n/a | yes |
+| broker\_subnets | n/a | `list(any)` | n/a | yes |
 | client\_instance\_type | Size of client instance | `string` | `"t2.micro"` | no |
-| common\_tags | n/a | `map` | n/a | yes |
+| common\_tags | n/a | `map(any)` | n/a | yes |
 | confluent\_broker\_version | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
 | confluent\_connect\_version | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
 | confluent\_control\_version | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
@@ -91,26 +122,26 @@ No requirements.
 | confluent\_schema\_version | The AMI version number or label to retrieved from AWS | `string` | `""` | no |
 | confluent\_zookeeper\_version | The AMI version number or label to retrieved from AWS | `string` | `""` | no |
 | connect\_instance\_type | Size of broker instance | `string` | `"t2.micro"` | no |
-| connect\_private\_ip | n/a | `list` | n/a | yes |
+| connect\_private\_ip | n/a | `list(any)` | n/a | yes |
 | consumer\_instance\_type | Size of consumer instance | `string` | `"t2.micro"` | no |
-| consumer\_subnets | n/a | `list` | n/a | yes |
+| consumer\_subnets | n/a | `list(any)` | n/a | yes |
 | control\_center\_instance\_type | Size of control center instance | `string` | `"t2.micro"` | no |
-| control\_center\_private\_ip | n/a | `list` | n/a | yes |
-| control\_center\_subnets | n/a | `list` | n/a | yes |
+| control\_center\_private\_ip | n/a | `list(any)` | n/a | yes |
+| control\_center\_subnets | n/a | `list(any)` | n/a | yes |
 | domain | n/a | `string` | n/a | yes |
 | key\_name | n/a | `string` | n/a | yes |
 | name | n/a | `string` | n/a | yes |
-| private\_subnets | n/a | `list` | n/a | yes |
-| producer\_subnets | n/a | `list` | n/a | yes |
-| roles | n/a | `list` | <pre>[<br>  "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",<br>  "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",<br>  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"<br>]</pre> | no |
+| private\_subnets | n/a | `list(any)` | n/a | yes |
+| producer\_subnets | n/a | `list(any)` | n/a | yes |
+| roles | n/a | `list(any)` | <pre>[<br>  "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",<br>  "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",<br>  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"<br>]</pre> | no |
 | schema\_instance\_type | n/a | `string` | `"t2.micro"` | no |
-| schema\_private\_ip | n/a | `list` | n/a | yes |
+| schema\_private\_ip | n/a | `list(any)` | n/a | yes |
 | source\_ami\_account\_id | n/a | `string` | n/a | yes |
 | subnet\_tag | n/a | `string` | `"*Private*"` | no |
 | vpc\_cidr | n/a | `string` | n/a | yes |
-| zk\_private\_ip | n/a | `list` | n/a | yes |
-| zk\_subnets | n/a | `list` | n/a | yes |
-| zookeeper | n/a | `map` | <pre>{<br>  "client-listener-port": "5570",<br>  "instance_type": "t2.micro",<br>  "leader-listener-port": "5590",<br>  "peer-listener-port": "5580"<br>}</pre> | no |
+| zk\_private\_ip | n/a | `list(any)` | n/a | yes |
+| zk\_subnets | n/a | `list(any)` | n/a | yes |
+| zookeeper | n/a | `map(any)` | <pre>{<br>  "client-listener-port": "5570",<br>  "instance_type": "t2.micro",<br>  "leader-listener-port": "5590",<br>  "peer-listener-port": "5580"<br>}</pre> | no |
 
 ## Outputs
 
@@ -119,7 +150,6 @@ No requirements.
 | bastion\_ip | n/a |
 | public\_dns | n/a |
 | public\_ips | n/a |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Help

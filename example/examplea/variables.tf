@@ -3,11 +3,11 @@ variable "account_name" {
 }
 
 variable "allowed_ranges" {
-  type = list
+  type = list(any)
 }
 
 variable "allowed_connect_cluster_range" {
-  type = list
+  type = list(any)
 }
 
 variable "bastion_count" {
@@ -67,5 +67,5 @@ locals {
 }
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }

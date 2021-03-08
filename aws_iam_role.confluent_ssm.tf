@@ -6,7 +6,7 @@ resource "aws_iam_role" "confluent_ssm" {
 }
 
 variable "roles" {
-  type = list
+  type = list(any)
   default = [
     "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
     "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",

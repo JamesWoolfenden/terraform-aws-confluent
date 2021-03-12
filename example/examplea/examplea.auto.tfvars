@@ -13,5 +13,7 @@ dns_zone                      = "domain.com"
 domain                        = "example.com"
 
 common_tags = {
-  Application = "Confluent"
+  name        = "examplea"
+  "createdby" = "Terraform"
+  module      = "terraform-aws-confluent"
 }

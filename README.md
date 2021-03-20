@@ -113,6 +113,7 @@ No Modules.
 | broker\_private\_ip | n/a | `list(any)` | n/a | yes |
 | broker\_protocol | Broker protocol setting | `string` | `"SSL"` | no |
 | broker\_subnets | n/a | `list(any)` | n/a | yes |
+| bucket\_arn | n/a | `string` | `""` | no |
 | client\_instance\_type | Size of client instance | `string` | `"t2.micro"` | no |
 | common\_tags | n/a | `map(any)` | n/a | yes |
 | confluent\_broker\_version | The AMI version number or label to retrieve from AWS | `string` | `""` | no |

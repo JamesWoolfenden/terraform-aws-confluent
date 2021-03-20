@@ -15,7 +15,11 @@ data "aws_iam_policy_document" "confluent" {
       "s3:PutObject",
       "s3:ListObjects",
     "s3:GetObject"]
-    resources = ["*"]
+    resources = [var.bucket_arn]
 
   }
+}
+
+variable "bucket_arn" {
+  default = ""
 }

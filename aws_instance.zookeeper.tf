@@ -1,6 +1,8 @@
 resource "aws_instance" "zookeeper" {
   count                = length(var.zk_private_ip)
   ami                  = data.aws_ami.zookeeper.id
+  monitoring           = true
+  ebs_optimized        = true
   instance_type        = var.zookeeper["instance_type"]
   private_ip           = element(var.zk_private_ip, count.index)
   iam_instance_profile = aws_iam_instance_profile.confluent_ssm.name

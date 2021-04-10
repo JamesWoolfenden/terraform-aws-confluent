@@ -1,6 +1,9 @@
 resource "aws_instance" "schema-registry" {
-  ami                    = data.aws_ami.schema.id
-  count                  = length(var.private_subnets)
+  ami        = data.aws_ami.schema.id
+  count      = length(var.private_subnets)
+  monitoring = true
+
+  ebs_optimized          = true
   iam_instance_profile   = aws_iam_instance_profile.confluent_ssm.name
   instance_type          = var.schema_instance_type
   key_name               = var.key_name

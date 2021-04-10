@@ -4,8 +4,8 @@ resource "aws_lb" "broker" {
   internal                   = true
   load_balancer_type         = "network"
   subnets                    = [data.aws_subnet_ids.subnets.id]
-
-  depends_on = [aws_instance.brokers]
+  drop_invalid_header_fields = true
+  depends_on                 = [aws_instance.brokers]
 
   tags = var.common_tags
 }

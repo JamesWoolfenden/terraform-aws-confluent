@@ -1,6 +1,9 @@
 resource "aws_instance" "brokers" {
-  ami                    = data.aws_ami.broker.id
-  count                  = length(var.broker_private_ip)
+  ami        = data.aws_ami.broker.id
+  count      = length(var.broker_private_ip)
+  monitoring = true
+
+  ebs_optimized          = true
   iam_instance_profile   = aws_iam_instance_profile.confluent_ssm.name
   instance_type          = var.broker_instance_type
   key_name               = var.key_name

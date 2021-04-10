@@ -1,6 +1,9 @@
 resource "aws_instance" "control-center" {
-  ami                    = data.aws_ami.control.id
-  count                  = length(var.control_center_subnets)
+  ami        = data.aws_ami.control.id
+  count      = length(var.control_center_subnets)
+  monitoring = true
+
+  ebs_optimized          = true
   iam_instance_profile   = aws_iam_instance_profile.confluent_ssm.name
   instance_type          = var.control_center_instance_type
   key_name               = var.key_name

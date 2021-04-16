@@ -10,6 +10,11 @@ variable "allowed_ranges" {
   description = "A list of allowed IPs that can connect"
 }
 
+variable "egress_range" {
+  type    = list(any)
+  default = ["0.0.0.0/0"]
+}
+
 variable "bastion_instance_type" {
   type        = string
   description = "Size of Bastion instance"

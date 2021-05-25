@@ -7,8 +7,8 @@ data "template_file" "zookeeper_user_data" {
     aws_id                  = data.aws_caller_identity.current.account_id
     count                   = count.index
     number                  = count.index + 1
-    private_dns_zone        = replace(data.aws_route53_zone.selected.name, "/[.]$/", "")
-    stunnel_cert            = data.aws_s3_bucket_object.stunnel_cert.body
+    private_dns_zone        = replace(var.private_zone.name, "/[.]$/", "")
+    stunnel_cert            = var.stunnel_cert
     zk-client-listener-port = var.zookeeper["client-listener-port"]
     zk-leader-listener-port = var.zookeeper["leader-listener-port"]
     zk-peer-listener-port   = var.zookeeper["peer-listener-port"]
@@ -18,5 +18,6 @@ data "template_file" "zookeeper_user_data" {
     zk_private_ip_2         = var.zk_private_ip[2]
     zk_private_ip_3         = var.zk_private_ip[3]
     zk_private_ip_4         = var.zk_private_ip[4]
+    region                  = data.aws_region.current.name
   }
 }

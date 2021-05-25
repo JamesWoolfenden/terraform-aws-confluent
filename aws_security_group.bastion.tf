@@ -1,7 +1,7 @@
 resource "aws_security_group" "bastions" {
   name        = "BASTION"
   description = "Managed by Terraform"
-  vpc_id      = data.aws_vpc.confluent.id
+  vpc_id      = var.vpc_id
 
   # Allow ping from my ip
   ingress {

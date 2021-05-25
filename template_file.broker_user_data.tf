@@ -6,6 +6,7 @@ data "template_file" "broker_user_data" {
     account_name     = var.account_name
     aws_id           = data.aws_caller_identity.current.account_id
     count            = count.index + 1
-    private_dns_zone = replace(data.aws_route53_zone.selected.name, "/[.]$/", "")
+    private_dns_zone = replace(var.private_zone.name, "/[.]$/", "")
+    region           = data.aws_region.current.name
   }
 }

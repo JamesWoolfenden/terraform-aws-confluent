@@ -1,12 +1,12 @@
 module "cluster" {
   source = "../../"
   ami_id = {
-    broker    = data.aws_ami.redhat.id
-    connect   = data.aws_ami.redhat.id
-    control   = data.aws_ami.redhat.id
-    schema    = data.aws_ami.redhat.id
+    broker    = data.aws_ami.broker.id
+    connect   = data.aws_ami.connect.id
+    control   = data.aws_ami.control.id
+    schema    = data.aws_ami.schema.id
     redhat    = data.aws_ami.redhat.id
-    zookeeper = data.aws_ami.redhat.id
+    zookeeper = data.aws_ami.zookeeper.id
   }
   allowed_ranges                = var.allowed_ranges
   allowed_connect_cluster_range = var.allowed_connect_cluster_range

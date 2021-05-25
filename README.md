@@ -17,41 +17,315 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 
 ## Usage
 
-Include this repository as a module in your existing terraform code:
+Include this repository as a module in your existing Terraform code, follow example-real not examplea as that is test data:
 
 ```hcl
 module "confluent" {
   source                        = "github.com/JamesWoolfenden/terraform-aws-confluent"
+  ami_id = {
+    broker    = data.aws_ami.broker.id
+    connect   = data.aws_ami.connect.id
+    control   = data.aws_ami.control.id
+    schema    = data.aws_ami.schema.id
+    redhat    = data.aws_ami.redhat.id
+    zookeeper = data.aws_ami.zookeeper.id
+  }
   allowed_ranges                = var.allowed_ranges
   allowed_connect_cluster_range = var.allowed_connect_cluster_range
   account_name                  = var.account_name
   bastion_count                 = var.bastion_count
   bastion_private_ip            = local.bastion_private_ip
-  bastion_subnet                = data.aws_subnet_ids.public.ids
+  bastion_subnet                = tolist(data.aws_subnet_ids.public.ids)[0]
   broker_subnets                = data.aws_subnet_ids.private.ids
   broker_private_ip             = local.broker_private_ip
   broker_protocol               = var.broker_protocol
-  confluent_broker_version      = var.confluent_broker_version
-  confluent_connect_version     = var.confluent_connect_version
-  confluent_control_version     = var.confluent_control_version
   confluent_license             = var.confluent_license
-  confluent_schema_version      = var.confluent_schema_version
-  confluent_zookeeper_version   = var.confluent_zookeeper_version
   connect_private_ip            = local.connect_private_ip
-  consumer_subnets              = [data.aws_subnet_ids.private.ids]
+  consumer_subnets              = tolist(data.aws_subnet_ids.private.ids)
   control_center_private_ip     = local.control_center_private_ip
-  control_center_subnets        = [data.aws_subnet_ids.private.ids]
+  control_center_subnets        = tolist(data.aws_subnet_ids.private.ids)
   domain                        = var.domain
   key_name                      = "id_rsa.${var.account_name}"
   name                          = var.cluster_name
   producer_subnets              = [data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids]
+  private_zone                  = data.aws_route53_zone.selected
   schema_private_ip             = local.schema_private_ip
-  private_subnets               = [data.aws_subnet_ids.private.ids]
-  source_ami_account_id         = data.aws_caller_identity.current.account_id
+  private_subnets               = tolist(data.aws_subnet_ids.private.ids)
+  stunnel_cert                  = tls_private_key.example.private_key_pem
   vpc_cidr                      = data.aws_vpc.vpc.cidr_block
+  vpc_id                        = local.vpc_id
   zk_private_ip                 = local.zk_private_ip
-  zk_subnets                    = [data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids]
+  zk_subnets                    = concat(tolist(data.aws_subnet_ids.private.ids), tolist(data.aws_subnet_ids.private.ids))
 }
+```
+
+## Costs
+
+```text
+monthly cost estimate
+
+Project: .
+
+ Name                                                            Monthly Qty  Unit            Monthly Cost
+
+ module.cluster.aws_instance.bastion[0]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 16  GB-months              $1.86
+
+ module.cluster.aws_instance.brokers[0]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ ├─ root_block_device
+ │  └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+ ├─ ebs_block_device[0]
+ │  └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+ ├─ ebs_block_device[1]
+ │  └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+ └─ ebs_block_device[2]
+    └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+
+ module.cluster.aws_instance.brokers[1]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ ├─ root_block_device
+ │  └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+ ├─ ebs_block_device[0]
+ │  └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+ ├─ ebs_block_device[1]
+ │  └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+ └─ ebs_block_device[2]
+    └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+
+ module.cluster.aws_instance.brokers[2]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ ├─ root_block_device
+ │  └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+ ├─ ebs_block_device[0]
+ │  └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+ ├─ ebs_block_device[1]
+ │  └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+ └─ ebs_block_device[2]
+    └─ Storage (general purpose SSD, gp2)                              4,000  GB-months            $464.00
+
+ module.cluster.aws_instance.connect-cluster[0]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 60  GB-months              $6.96
+
+ module.cluster.aws_instance.connect-cluster[1]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 60  GB-months              $6.96
+
+ module.cluster.aws_instance.connect-cluster[2]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 60  GB-months              $6.96
+
+ module.cluster.aws_instance.control-center[0]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                300  GB-months             $34.80
+
+ module.cluster.aws_instance.control-center[1]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                300  GB-months             $34.80
+
+ module.cluster.aws_instance.control-center[2]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                300  GB-months             $34.80
+
+ module.cluster.aws_instance.schema-registry[0]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_instance.schema-registry[1]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_instance.schema-registry[2]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_instance.zookeeper[0]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_instance.zookeeper[1]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_instance.zookeeper[2]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_instance.zookeeper[3]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_instance.zookeeper[4]
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.micro)                     730  hours                  $9.64
+ ├─ EC2 detailed monitoring                                                7  metrics                $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                                 32  GB-months              $3.71
+
+ module.cluster.aws_lb.broker
+ ├─ Network load balancer                                                730  hours                 $19.32
+ └─ Load balancer capacity units                               Cost depends on usage: $0.006 per LCU-hours
+
+ module.cluster.aws_lb.schema
+ ├─ Network load balancer                                                730  hours                 $19.32
+ └─ Load balancer capacity units                               Cost depends on usage: $0.006 per LCU-hours
+
+ module.cluster.aws_route53_record.connect_cluster[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.connect_cluster[1]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.connect_cluster[2]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.control_centre[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.kafka[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.kafka[1]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.kafka[2]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_connect_cluster[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_connect_cluster[1]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_connect_cluster[2]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_control_centre[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_kafka[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_kafka[1]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_kafka[2]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_zookeeper[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_zookeeper[1]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_zookeeper[2]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_zookeeper[3]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.reverse_zookeeper[4]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.zookeeper[0]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.zookeeper[1]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.zookeeper[2]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.zookeeper[3]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_record.zookeeper[4]
+ ├─ Standard queries (first 1B)                                Cost depends on usage: $0.40 per 1M queries
+ ├─ Latency based routing queries (first 1B)                   Cost depends on usage: $0.60 per 1M queries
+ └─ Geo DNS queries (first 1B)                                 Cost depends on usage: $0.70 per 1M queries
+
+ module.cluster.aws_route53_zone.reverse
+ └─ Hosted zone                                                            1  months                 $0.50
+
+ PROJECT TOTAL                                                                                   $4,594.35
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -110,20 +384,11 @@ No modules.
 | [aws_security_group.zookeepers](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_vpc_endpoint_service.broker](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint_service) | resource |
 | [aws_vpc_endpoint_service.schema](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint_service) | resource |
-| [aws_ami.broker](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_ami.connect](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_ami.control](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_ami.redhat](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_ami.schema](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_ami.zookeeper](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.confluent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.ssm](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
-| [aws_route53_zone.selected](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
-| [aws_s3_bucket_object.stunnel_cert](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/s3_bucket_object) | data source |
 | [aws_subnet_ids.subnets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet_ids) | data source |
-| [aws_vpc.confluent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
 | [template_file.broker_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.connect_cluster_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.control_centre_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
@@ -137,6 +402,7 @@ No modules.
 | <a name="input_account_name"></a> [account\_name](#input\_account\_name) | Name of AWS account type e.g. Development. Testing or Production to help with naming | `string` | `"development"` | no |
 | <a name="input_allowed_connect_cluster_range"></a> [allowed\_connect\_cluster\_range](#input\_allowed\_connect\_cluster\_range) | n/a | `list(any)` | n/a | yes |
 | <a name="input_allowed_ranges"></a> [allowed\_ranges](#input\_allowed\_ranges) | A list of allowed IPs that can connect | `list(any)` | `[]` | no |
+| <a name="input_ami_id"></a> [ami\_id](#input\_ami\_id) | n/a | `any` | n/a | yes |
 | <a name="input_bastion_count"></a> [bastion\_count](#input\_bastion\_count) | n/a | `number` | `1` | no |
 | <a name="input_bastion_instance_type"></a> [bastion\_instance\_type](#input\_bastion\_instance\_type) | Size of Bastion instance | `string` | `"t2.micro"` | no |
 | <a name="input_bastion_private_ip"></a> [bastion\_private\_ip](#input\_bastion\_private\_ip) | Allows you to specify the private IP | `string` | `""` | no |
@@ -147,12 +413,7 @@ No modules.
 | <a name="input_broker_subnets"></a> [broker\_subnets](#input\_broker\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_bucket_arn"></a> [bucket\_arn](#input\_bucket\_arn) | n/a | `string` | `""` | no |
 | <a name="input_client_instance_type"></a> [client\_instance\_type](#input\_client\_instance\_type) | Size of client instance | `string` | `"t2.micro"` | no |
-| <a name="input_confluent_broker_version"></a> [confluent\_broker\_version](#input\_confluent\_broker\_version) | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
-| <a name="input_confluent_connect_version"></a> [confluent\_connect\_version](#input\_confluent\_connect\_version) | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
-| <a name="input_confluent_control_version"></a> [confluent\_control\_version](#input\_confluent\_control\_version) | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
 | <a name="input_confluent_license"></a> [confluent\_license](#input\_confluent\_license) | Your Confluent licence | `string` | `"123456789"` | no |
-| <a name="input_confluent_schema_version"></a> [confluent\_schema\_version](#input\_confluent\_schema\_version) | The AMI version number or label to retrieved from AWS | `string` | `""` | no |
-| <a name="input_confluent_zookeeper_version"></a> [confluent\_zookeeper\_version](#input\_confluent\_zookeeper\_version) | The AMI version number or label to retrieved from AWS | `string` | `""` | no |
 | <a name="input_connect_instance_type"></a> [connect\_instance\_type](#input\_connect\_instance\_type) | Size of broker instance | `string` | `"t2.micro"` | no |
 | <a name="input_connect_private_ip"></a> [connect\_private\_ip](#input\_connect\_private\_ip) | n/a | `list(any)` | n/a | yes |
 | <a name="input_consumer_instance_type"></a> [consumer\_instance\_type](#input\_consumer\_instance\_type) | Size of consumer instance | `string` | `"t2.micro"` | no |
@@ -165,13 +426,15 @@ No modules.
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | n/a | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | n/a | `string` | n/a | yes |
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `list(any)` | n/a | yes |
+| <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | n/a | `any` | n/a | yes |
 | <a name="input_producer_subnets"></a> [producer\_subnets](#input\_producer\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_roles"></a> [roles](#input\_roles) | n/a | `list(any)` | <pre>[<br>  "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",<br>  "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",<br>  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"<br>]</pre> | no |
 | <a name="input_schema_instance_type"></a> [schema\_instance\_type](#input\_schema\_instance\_type) | n/a | `string` | `"t2.micro"` | no |
 | <a name="input_schema_private_ip"></a> [schema\_private\_ip](#input\_schema\_private\_ip) | n/a | `list(any)` | n/a | yes |
-| <a name="input_source_ami_account_id"></a> [source\_ami\_account\_id](#input\_source\_ami\_account\_id) | n/a | `string` | n/a | yes |
+| <a name="input_stunnel_cert"></a> [stunnel\_cert](#input\_stunnel\_cert) | n/a | `any` | n/a | yes |
 | <a name="input_subnet_tag"></a> [subnet\_tag](#input\_subnet\_tag) | n/a | `string` | `"*Private*"` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | n/a | `string` | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
 | <a name="input_zk_private_ip"></a> [zk\_private\_ip](#input\_zk\_private\_ip) | n/a | `list(any)` | n/a | yes |
 | <a name="input_zk_subnets"></a> [zk\_subnets](#input\_zk\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_zookeeper"></a> [zookeeper](#input\_zookeeper) | n/a | `map(any)` | <pre>{<br>  "client-listener-port": "5570",<br>  "instance_type": "t2.micro",<br>  "leader-listener-port": "5590",<br>  "peer-listener-port": "5580"<br>}</pre> | no |

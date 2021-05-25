@@ -2,7 +2,7 @@ resource "aws_security_group" "control-center" {
   name = "CONTROL-CENTER"
 
   description = "control-center security group - Managed by Terraform"
-  vpc_id      = data.aws_vpc.confluent.id
+  vpc_id      = var.vpc_id
 
   # web ui
   ingress {

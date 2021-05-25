@@ -50,40 +50,10 @@ variable "client_instance_type" {
   default     = "t2.micro"
 }
 
-variable "confluent_broker_version" {
-  type        = string
-  description = "The AMI version number or label to retrieve from AWS"
-  default     = ""
-}
-
-variable "confluent_connect_version" {
-  type        = string
-  description = "The AMI version number or label to retrieve from AWS"
-  default     = ""
-}
-
-variable "confluent_control_version" {
-  type        = string
-  description = "The AMI version number or label to retrieve from AWS"
-  default     = ""
-}
-
 variable "confluent_license" {
   type        = string
   default     = "123456789"
   description = "Your Confluent licence"
-}
-
-variable "confluent_schema_version" {
-  type        = string
-  description = "The AMI version number or label to retrieved from AWS"
-  default     = ""
-}
-
-variable "confluent_zookeeper_version" {
-  type        = string
-  default     = ""
-  description = "The AMI version number or label to retrieved from AWS"
 }
 
 variable "connect_instance_type" {
@@ -115,10 +85,6 @@ variable "name" {
 variable "schema_instance_type" {
   type    = string
   default = "t2.micro"
-}
-
-variable "source_ami_account_id" {
-  type = string
 }
 
 variable "vpc_cidr" {
@@ -195,3 +161,13 @@ variable "zookeeper" {
 variable "subnet_tag" {
   default = "*Private*"
 }
+
+variable "vpc_id" {
+  type = string
+}
+
+variable "ami_id" {}
+
+variable "stunnel_cert" {}
+
+variable "private_zone" {}

@@ -1,2 +1,234 @@
 version: 0.1
-resource_usage: {}
+resource_usage:
+  module.cluster.aws_instance.bastion[0]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.brokers[0]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.brokers[1]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.brokers[2]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.connect-cluster[0]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.connect-cluster[1]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.connect-cluster[2]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.control-center[0]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.control-center[1]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.control-center[2]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.schema-registry[0]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.schema-registry[1]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.schema-registry[2]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.zookeeper[0]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.zookeeper[1]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.zookeeper[2]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.zookeeper[3]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_instance.zookeeper[4]:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
+  module.cluster.aws_lb.broker:
+    active_connections: 0
+    new_connections: 0
+    processed_bytes_gb: 0
+    rule_evaluations: 0
+  module.cluster.aws_lb.schema:
+    active_connections: 0
+    new_connections: 0
+    processed_bytes_gb: 0
+    rule_evaluations: 0
+  module.cluster.aws_route53_record.connect_cluster[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.connect_cluster[1]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.connect_cluster[2]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.control_centre[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.kafka[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.kafka[1]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.kafka[2]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_connect_cluster[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_connect_cluster[1]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_connect_cluster[2]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_control_centre[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_kafka[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_kafka[1]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_kafka[2]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_zookeeper[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_zookeeper[1]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_zookeeper[2]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_zookeeper[3]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.reverse_zookeeper[4]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.zookeeper[0]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.zookeeper[1]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.zookeeper[2]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.zookeeper[3]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0
+  module.cluster.aws_route53_record.zookeeper[4]:
+    monthly_geo_queries: 0
+    monthly_latency_based_queries: 0
+    monthly_standard_queries: 0

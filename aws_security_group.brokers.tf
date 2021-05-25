@@ -1,7 +1,7 @@
 resource "aws_security_group" "brokers" {
   name        = "BROKER"
   description = "brokers - Managed by Terraform"
-  vpc_id      = data.aws_vpc.confluent.id
+  vpc_id      = var.vpc_id
 
   # 9092-9095 for all broker protocols
   ingress {

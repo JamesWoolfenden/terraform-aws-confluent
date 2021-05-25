@@ -6,5 +6,5 @@ data "aws_ami" "schema" {
     values = ["confluent-schema-${var.confluent_schema_version}*"]
   }
 
-  owners = [var.source_ami_account_id]
+  owners = [local.source_ami_account_id]
 }

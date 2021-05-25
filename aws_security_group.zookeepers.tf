@@ -1,7 +1,7 @@
 resource "aws_security_group" "zookeepers" {
   name        = "ZOOKEEPER"
   description = "Zookeeper security group - Managed by Terraform"
-  vpc_id      = data.aws_vpc.confluent.id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port = 0

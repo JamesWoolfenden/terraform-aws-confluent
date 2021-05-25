@@ -1,6 +1,6 @@
 resource "aws_instance" "control-center" {
   # checkov:skip=CKV2_AWS_17: Bad check
-  ami        = data.aws_ami.control.id
+  ami        = var.ami_id["control"]
   count      = length(var.control_center_subnets)
   monitoring = true
 

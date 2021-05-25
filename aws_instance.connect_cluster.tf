@@ -1,6 +1,6 @@
 resource "aws_instance" "connect-cluster" {
   # checkov:skip=CKV2_AWS_17: Bad check
-  ami        = data.aws_ami.connect.id
+  ami        = var.ami_id["connect"]
   count      = length(var.private_subnets)
   monitoring = true
 

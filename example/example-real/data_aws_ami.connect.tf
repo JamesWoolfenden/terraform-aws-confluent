@@ -6,5 +6,5 @@ data "aws_ami" "connect" {
     values = ["confluent-connect-${var.confluent_connect_version}*"]
   }
 
-  owners = [var.source_ami_account_id]
+  owners = [local.source_ami_account_id]
 }

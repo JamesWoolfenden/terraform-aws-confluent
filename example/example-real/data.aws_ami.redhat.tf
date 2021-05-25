@@ -6,5 +6,5 @@ data "aws_ami" "redhat" {
     values = ["RHEL-BASE-*"]
   }
 
-  owners = [var.source_ami_account_id]
+  owners = [local.source_ami_account_id]
 }

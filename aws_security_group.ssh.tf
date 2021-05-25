@@ -1,7 +1,7 @@
 resource "aws_security_group" "ssh" {
   name        = "SSH"
   description = "Managed by Terraform"
-  vpc_id      = data.aws_vpc.confluent.id
+  vpc_id      = var.vpc_id
 
   # Allow ping from my ip and self
   ingress {

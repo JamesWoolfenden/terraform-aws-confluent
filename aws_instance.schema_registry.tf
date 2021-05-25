@@ -1,6 +1,6 @@
 resource "aws_instance" "schema-registry" {
   # checkov:skip=CKV2_AWS_17: Bad check
-  ami        = data.aws_ami.schema.id
+  ami        = var.ami_id["schema"]
   count      = length(var.private_subnets)
   monitoring = true
 

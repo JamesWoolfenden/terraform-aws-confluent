@@ -1,7 +1,7 @@
 resource "aws_instance" "zookeeper" {
   # checkov:skip=CKV2_AWS_17: Bad check
   count                = length(var.zk_private_ip)
-  ami                  = data.aws_ami.zookeeper.id
+  ami                  = var.ami_id["zookeeper"]
   monitoring           = true
   ebs_optimized        = true
   instance_type        = var.zookeeper["instance_type"]
@@ -13,7 +13,7 @@ resource "aws_instance" "zookeeper" {
     aws_security_group.zookeepers.id,
   ]
 
-  subnet_id = element(var.zk_subnets, count.index)
+  subnet_id = var.zk_subnets[count.index]
   key_name  = var.key_name
   user_data = element(data.template_file.zookeeper_user_data.*.rendered, count.index)
 

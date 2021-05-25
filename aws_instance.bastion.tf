@@ -3,7 +3,7 @@ resource "aws_instance" "bastion" {
   # checkov:skip=CKV_AWS_88: "Its a Bastion host!"
 
   count = var.bastion_count
-  ami   = data.aws_ami.redhat.id
+  ami   = var.ami_id["redhat"]
   #tfsec:ignore:AWS012
   associate_public_ip_address = true
   monitoring                  = true

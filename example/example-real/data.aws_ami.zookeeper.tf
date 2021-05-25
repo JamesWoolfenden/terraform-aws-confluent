@@ -6,5 +6,5 @@ data "aws_ami" "zookeeper" {
     values = ["confluent-zookeeper-${var.confluent_zookeeper_version}*"]
   }
 
-  owners = [var.source_ami_account_id]
+  owners = [local.source_ami_account_id]
 }

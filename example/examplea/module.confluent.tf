@@ -9,7 +9,6 @@ module "cluster" {
   broker_subnets                = data.aws_subnet_ids.private.ids
   broker_private_ip             = local.broker_private_ip
   broker_protocol               = var.broker_protocol
-  common_tags                   = var.common_tags
   confluent_broker_version      = var.confluent_broker_version
   confluent_connect_version     = var.confluent_connect_version
   confluent_control_version     = var.confluent_control_version

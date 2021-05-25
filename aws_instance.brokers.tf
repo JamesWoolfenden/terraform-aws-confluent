@@ -1,4 +1,5 @@
 resource "aws_instance" "brokers" {
+  # checkov:skip=CKV2_AWS_17: Bad check
   ami        = data.aws_ami.broker.id
   count      = length(var.broker_private_ip)
   monitoring = true
@@ -43,5 +44,4 @@ resource "aws_instance" "brokers" {
   metadata_options {
     http_tokens = "required"
   }
-  tags = var.common_tags
 }

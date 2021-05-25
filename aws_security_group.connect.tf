@@ -26,5 +26,5 @@ resource "aws_security_group" "connect" {
     cidr_blocks = var.egress_range
   }
 
-  tags = var.common_tags
+
 }

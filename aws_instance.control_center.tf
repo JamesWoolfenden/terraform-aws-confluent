@@ -1,4 +1,5 @@
 resource "aws_instance" "control-center" {
+  # checkov:skip=CKV2_AWS_17: Bad check
   ami        = data.aws_ami.control.id
   count      = length(var.control_center_subnets)
   monitoring = true
@@ -25,5 +26,4 @@ resource "aws_instance" "control-center" {
   metadata_options {
     http_tokens = "required"
   }
-  tags = var.common_tags
 }

@@ -1,4 +1,5 @@
 resource "aws_instance" "zookeeper" {
+  # checkov:skip=CKV2_AWS_17: Bad check
   count                = length(var.zk_private_ip)
   ami                  = data.aws_ami.zookeeper.id
   monitoring           = true
@@ -27,5 +28,4 @@ resource "aws_instance" "zookeeper" {
   metadata_options {
     http_tokens = "required"
   }
-  tags = var.common_tags
 }

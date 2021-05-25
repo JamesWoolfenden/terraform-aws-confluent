@@ -1,4 +1,5 @@
 resource "aws_instance" "connect-cluster" {
+  # checkov:skip=CKV2_AWS_17: Bad check
   ami        = data.aws_ami.connect.id
   count      = length(var.private_subnets)
   monitoring = true
@@ -26,5 +27,4 @@ resource "aws_instance" "connect-cluster" {
   metadata_options {
     http_tokens = "required"
   }
-  tags = var.common_tags
 }

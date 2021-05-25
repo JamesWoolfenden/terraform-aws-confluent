@@ -1,4 +1,5 @@
 resource "aws_instance" "bastion" {
+  # checkov:skip=CKV2_AWS_17: Bad check
   # checkov:skip=CKV_AWS_88: "Its a Bastion host!"
 
   count = var.bastion_count
@@ -28,6 +29,4 @@ resource "aws_instance" "bastion" {
   metadata_options {
     http_tokens = "required"
   }
-
-  tags = var.common_tags
 }

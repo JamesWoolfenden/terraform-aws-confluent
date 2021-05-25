@@ -31,7 +31,6 @@ module "confluent" {
   broker_subnets                = data.aws_subnet_ids.private.ids
   broker_private_ip             = local.broker_private_ip
   broker_protocol               = var.broker_protocol
-  common_tags                   = var.common_tags
   confluent_broker_version      = var.confluent_broker_version
   confluent_connect_version     = var.confluent_connect_version
   confluent_control_version     = var.confluent_control_version
@@ -148,7 +147,6 @@ No modules.
 | <a name="input_broker_subnets"></a> [broker\_subnets](#input\_broker\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_bucket_arn"></a> [bucket\_arn](#input\_bucket\_arn) | n/a | `string` | `""` | no |
 | <a name="input_client_instance_type"></a> [client\_instance\_type](#input\_client\_instance\_type) | Size of client instance | `string` | `"t2.micro"` | no |
-| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | n/a | `map(any)` | n/a | yes |
 | <a name="input_confluent_broker_version"></a> [confluent\_broker\_version](#input\_confluent\_broker\_version) | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
 | <a name="input_confluent_connect_version"></a> [confluent\_connect\_version](#input\_confluent\_connect\_version) | The AMI version number or label to retrieve from AWS | `string` | `""` | no |
 | <a name="input_confluent_control_version"></a> [confluent\_control\_version](#input\_confluent\_control\_version) | The AMI version number or label to retrieve from AWS | `string` | `""` | no |

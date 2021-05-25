@@ -8,5 +8,4 @@ resource "aws_lb_target_group" "broker" {
     enabled = false
     type    = "lb_cookie"
   }
-  tags = var.common_tags
 }

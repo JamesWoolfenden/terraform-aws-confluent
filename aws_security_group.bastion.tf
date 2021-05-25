@@ -27,5 +27,5 @@ resource "aws_security_group" "bastions" {
     cidr_blocks = var.egress_range
   }
 
-  tags = var.common_tags
+
 }

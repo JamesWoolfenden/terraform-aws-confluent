@@ -6,7 +6,7 @@ resource "aws_route53_zone" "reverse" {
     vpc_id     = data.aws_vpc.confluent.id
     vpc_region = data.aws_region.current.name
   }
-  tags = var.common_tags
+
 
 }
 

@@ -181,9 +181,6 @@ variable "domain" {
   type = string
 }
 
-variable "common_tags" {
-  type = map(any)
-}
 
 variable "zookeeper" {
   type = map(any)

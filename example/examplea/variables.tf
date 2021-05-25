@@ -65,7 +65,3 @@ locals {
   key_name                  = "id_rsa.${var.account_name}"
   private_dns_zone          = "${var.account_name}.${var.dns_zone}"
 }
-
-variable "common_tags" {
-  type = map(any)
-}

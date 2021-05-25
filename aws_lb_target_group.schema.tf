@@ -9,5 +9,5 @@ resource "aws_lb_target_group" "schema" {
     type    = "lb_cookie"
   }
 
-  tags = var.common_tags
+
 }

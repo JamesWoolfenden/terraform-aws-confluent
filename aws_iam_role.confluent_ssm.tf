@@ -2,7 +2,6 @@ resource "aws_iam_role" "confluent_ssm" {
   name               = "CONFLUENT"
   description        = "Allows EC2 instances to call AWS services like CloudWatch and SSM on your behalf."
   assume_role_policy = data.aws_iam_policy_document.ssm.json
-  tags               = var.common_tags
 }
 
 variable "roles" {

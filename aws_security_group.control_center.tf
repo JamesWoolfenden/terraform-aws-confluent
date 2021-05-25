@@ -28,5 +28,5 @@ resource "aws_security_group" "control-center" {
     cidr_blocks = var.egress_range
   }
 
-  tags = var.common_tags
+
 }

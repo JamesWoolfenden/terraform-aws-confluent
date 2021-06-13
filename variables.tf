@@ -158,10 +158,6 @@ variable "zookeeper" {
   }
 }
 
-variable "subnet_tag" {
-  default = "*Private*"
-}
-
 variable "vpc_id" {
   type = string
 }

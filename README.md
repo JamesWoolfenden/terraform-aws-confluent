@@ -388,7 +388,6 @@ No modules.
 | [aws_iam_policy_document.confluent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.ssm](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
-| [aws_subnet_ids.subnets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet_ids) | data source |
 | [template_file.broker_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.connect_cluster_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.control_centre_user_data](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
@@ -432,7 +431,6 @@ No modules.
 | <a name="input_schema_instance_type"></a> [schema\_instance\_type](#input\_schema\_instance\_type) | n/a | `string` | `"t2.micro"` | no |
 | <a name="input_schema_private_ip"></a> [schema\_private\_ip](#input\_schema\_private\_ip) | n/a | `list(any)` | n/a | yes |
 | <a name="input_stunnel_cert"></a> [stunnel\_cert](#input\_stunnel\_cert) | n/a | `any` | n/a | yes |
-| <a name="input_subnet_tag"></a> [subnet\_tag](#input\_subnet\_tag) | n/a | `string` | `"*Private*"` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | n/a | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
 | <a name="input_zk_private_ip"></a> [zk\_private\_ip](#input\_zk\_private\_ip) | n/a | `list(any)` | n/a | yes |

@@ -18,7 +18,7 @@ data "aws_subnet_ids" "private" {
   vpc_id = local.vpc_id
 
   tags = {
-    Type = "Private"
+    Type = "Public"
   }
 }
 

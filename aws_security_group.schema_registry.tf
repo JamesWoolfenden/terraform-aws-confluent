@@ -5,6 +5,7 @@ resource "aws_security_group" "schema" {
 
   # 9092-9095 for all broker protocols
   ingress {
+    description = "Allow broker protocols"
     from_port   = 9092
     to_port     = 9096
     protocol    = "TCP"
@@ -13,6 +14,7 @@ resource "aws_security_group" "schema" {
 
   # from bastion
   ingress {
+    description     = "Allow SSH from Bastion"
     from_port       = 22
     to_port         = 22
     protocol        = "TCP"
@@ -21,6 +23,7 @@ resource "aws_security_group" "schema" {
 
   # Allow ping from my ip, self, bastion
   ingress {
+    description     = "Allow ping from my ip, self, bastion"
     from_port       = 8
     to_port         = 0
     protocol        = "icmp"
@@ -30,9 +33,10 @@ resource "aws_security_group" "schema" {
   }
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    description = "Allow outbound"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     #tfsec:ignore:AWS009
     cidr_blocks = var.egress_range
   }

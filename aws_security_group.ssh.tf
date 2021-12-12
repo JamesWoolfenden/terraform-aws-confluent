@@ -5,6 +5,7 @@ resource "aws_security_group" "ssh" {
 
   # Allow ping from my ip and self
   ingress {
+    description = "Allow ping from my ip, self, bastion"
     from_port   = 8
     to_port     = 0
     protocol    = "icmp"
@@ -14,6 +15,7 @@ resource "aws_security_group" "ssh" {
 
   # from bastion
   ingress {
+    description     = "Allow SSH"
     from_port       = 22
     to_port         = 22
     protocol        = "TCP"
@@ -21,9 +23,10 @@ resource "aws_security_group" "ssh" {
   }
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    description = "Allow outbound"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     #tfsec:ignore:AWS009
     cidr_blocks = var.egress_range
   }

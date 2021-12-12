@@ -6,6 +6,7 @@ resource "aws_security_group" "control-center" {
 
   # web ui
   ingress {
+    description = "Webui"
     from_port   = 9021
     to_port     = 9021
     protocol    = "TCP"
@@ -14,6 +15,7 @@ resource "aws_security_group" "control-center" {
 
   # from bastion
   ingress {
+    description     = "Allow SSH"
     from_port       = 22
     to_port         = 22
     protocol        = "TCP"
@@ -21,9 +23,10 @@ resource "aws_security_group" "control-center" {
   }
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    description = "Allow outbound"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     #tfsec:ignore:AWS009
     cidr_blocks = var.egress_range
   }

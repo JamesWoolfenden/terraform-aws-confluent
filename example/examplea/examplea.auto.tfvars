@@ -1,4 +1,4 @@
-allowed_ranges                = ["10.01.01.01/32"]
+allowed_ranges                = ["10.1.1.1/32"]
 allowed_connect_cluster_range = ["10.0.0.0/16"]
 account_name                  = "test"
 bastion_count                 = 1

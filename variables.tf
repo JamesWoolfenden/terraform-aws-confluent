@@ -167,3 +167,7 @@ variable "ami_id" {}
 variable "stunnel_cert" {}
 
 variable "private_zone" {}
+
+variable "kms_key" {
+
+}

@@ -24,6 +24,7 @@ module "cluster" {
   control_center_subnets        = tolist(data.aws_subnet_ids.private.ids)
   domain                        = var.domain
   key_name                      = "id_rsa.${var.account_name}"
+  kms_key                       = aws_kms_key.example
   name                          = var.cluster_name
   producer_subnets              = [data.aws_subnet_ids.private.ids, data.aws_subnet_ids.private.ids]
   private_zone                  = data.aws_route53_zone.selected

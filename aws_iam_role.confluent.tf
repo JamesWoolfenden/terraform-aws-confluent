@@ -1,4 +1,6 @@
 resource "aws_iam_role_policy" "confluent" {
+  # checkov:skip=CKV_AWS_272: Policy requires broad access for this module to function
+  # checkov:skip=CKV_AWS_356: Policy requires broad access for this module to function
   name   = "CONFLUENT"
   role   = aws_iam_role.confluent_ssm.id
   policy = data.aws_iam_policy_document.confluent.json

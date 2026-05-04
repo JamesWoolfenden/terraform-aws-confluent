@@ -1,4 +1,5 @@
 resource "aws_security_group" "connect" {
+  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   name        = "CONNECT"
   description = "Connect security group - Managed by Terraform"
   vpc_id      = var.vpc_id

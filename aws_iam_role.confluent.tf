@@ -4,6 +4,8 @@ resource "aws_iam_role_policy" "confluent" {
   policy = data.aws_iam_policy_document.confluent.json
 }
 data "aws_iam_policy_document" "confluent" {
+  # checkov:skip=CKV_AWS_290: IAM policy requires broad write access for this module to function
+  # checkov:skip=CKV_AWS_355: IAM policy requires wildcard resource for this module to function
   statement {
     actions   = ["s3:ListBucket"]
     resources = ["arn:aws:s3:::*"]

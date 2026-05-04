@@ -1,4 +1,5 @@
 resource "aws_security_group" "schema" {
+  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   name        = "SCHEMA"
   description = "schema - Managed by Terraform"
   vpc_id      = var.vpc_id

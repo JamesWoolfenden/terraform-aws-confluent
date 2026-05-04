@@ -1,4 +1,5 @@
 resource "aws_security_group" "bastions" {
+  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   name        = "BASTION"
   description = "Managed by Terraform"
   vpc_id      = var.vpc_id

@@ -1,4 +1,5 @@
 resource "aws_security_group" "control-center" {
+  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   name = "CONTROL-CENTER"
 
   description = "control-center security group - Managed by Terraform"

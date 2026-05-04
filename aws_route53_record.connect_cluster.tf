@@ -1,4 +1,5 @@
 resource "aws_route53_record" "connect_cluster" {
+  # checkov:skip=CKV2_AWS_23: A record points to private IP of EC2 instance, not an AWS alias resource
   count   = length(var.connect_private_ip)
   zone_id = var.private_zone.zone_id
   name    = "connectcluster${count.index + 1}"

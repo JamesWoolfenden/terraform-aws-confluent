@@ -1,4 +1,5 @@
 resource "aws_route53_record" "kafka" {
+  # checkov:skip=CKV2_AWS_23: A record points to private IP of EC2 instance, not an AWS alias resource
   count   = length(var.broker_private_ip)
   zone_id = var.private_zone.zone_id
   name    = "broker${count.index + 1}"

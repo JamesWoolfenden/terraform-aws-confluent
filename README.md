@@ -467,22 +467,48 @@ resource "aws_iam_policy" "terraform_pike" {
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
+                "cloudwatch:DeleteInsightRules",
+                "cloudwatch:ListManagedInsightRules",
+                "cloudwatch:PutManagedInsightRules"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:AssociateIamInstanceProfile",
                 "ec2:AuthorizeSecurityGroupEgress",
                 "ec2:AuthorizeSecurityGroupIngress",
                 "ec2:CreateSecurityGroup",
+                "ec2:CreateVpcEndpointServiceConfiguration",
+                "ec2:DeleteNetworkInterface",
                 "ec2:DeleteSecurityGroup",
+                "ec2:DeleteVpcEndpointServiceConfigurations",
                 "ec2:DescribeAccountAttributes",
+                "ec2:DescribeIamInstanceProfileAssociations",
                 "ec2:DescribeInstanceAttribute",
                 "ec2:DescribeInstanceCreditSpecifications",
                 "ec2:DescribeInstanceTypes",
                 "ec2:DescribeInstances",
+                "ec2:DescribeKeyPairs",
                 "ec2:DescribeNetworkInterfaces",
                 "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
                 "ec2:DescribeTags",
                 "ec2:DescribeVolumes",
+                "ec2:DescribeVpcEndpointServiceConfigurations",
+                "ec2:DescribeVpcEndpointServicePermissions",
                 "ec2:DescribeVpcs",
+                "ec2:DetachNetworkInterface",
+                "ec2:DisassociateIamInstanceProfile",
                 "ec2:ModifyInstanceAttribute",
+                "ec2:ModifyVpcEndpointServiceConfiguration",
+                "ec2:ModifyVpcEndpointServicePayerResponsibility",
                 "ec2:MonitorInstances",
+                "ec2:ReplaceIamInstanceProfileAssociation",
                 "ec2:RevokeSecurityGroupEgress",
                 "ec2:RevokeSecurityGroupIngress",
                 "ec2:RunInstances",
@@ -491,14 +517,18 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:TerminateInstances",
                 "ec2:UnmonitorInstances"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
-            "Sid": "VisualEditor1",
+            "Sid": "VisualEditor2",
             "Effect": "Allow",
             "Action": [
+                "elasticloadbalancing:AttachLoadBalancerToSubnets",
                 "elasticloadbalancing:CreateListener",
                 "elasticloadbalancing:CreateLoadBalancer",
+                "elasticloadbalancing:CreateLoadBalancerListeners",
                 "elasticloadbalancing:CreateTargetGroup",
                 "elasticloadbalancing:DeleteListener",
                 "elasticloadbalancing:DeleteLoadBalancer",
@@ -516,10 +546,12 @@ resource "aws_iam_policy" "terraform_pike" {
                 "elasticloadbalancing:ModifyTargetGroupAttributes",
                 "elasticloadbalancing:RegisterTargets"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
-            "Sid": "VisualEditor2",
+            "Sid": "VisualEditor3",
             "Effect": "Allow",
             "Action": [
                 "iam:AddRoleToInstanceProfile",
@@ -541,22 +573,56 @@ resource "aws_iam_policy" "terraform_pike" {
                 "iam:RemoveRoleFromInstanceProfile",
                 "iam:UpdateRoleDescription"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
-            "Sid": "VisualEditor3",
+            "Sid": "VisualEditor4",
             "Effect": "Allow",
             "Action": [
+                "kms:CreateGrant",
+                "kms:DescribeKey",
+                "kms:GetPublicKey",
+                "kms:Sign"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": [
+                "route53:ActivateKeySigningKey",
                 "route53:AssociateVPCWithHostedZone",
                 "route53:ChangeResourceRecordSets",
                 "route53:CreateHostedZone",
+                "route53:CreateKeySigningKey",
+                "route53:DeactivateKeySigningKey",
                 "route53:DeleteHostedZone",
+                "route53:DeleteKeySigningKey",
+                "route53:DisableHostedZoneDNSSEC",
+                "route53:EnableHostedZoneDNSSEC",
                 "route53:GetChange",
+                "route53:GetDNSSEC",
                 "route53:GetHostedZone",
                 "route53:ListResourceRecordSets",
                 "route53:ListTagsForResource"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor6",
+            "Effect": "Allow",
+            "Action": [
+                "vpce:AllowMultiRegion"
+            ],
+            "Resource": [
+                "*"
+            ]
         }
     ]
 })

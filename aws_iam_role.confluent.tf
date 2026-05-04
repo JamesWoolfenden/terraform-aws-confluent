@@ -3,7 +3,6 @@ resource "aws_iam_role_policy" "confluent" {
   role   = aws_iam_role.confluent_ssm.id
   policy = data.aws_iam_policy_document.confluent.json
 }
-
 data "aws_iam_policy_document" "confluent" {
   statement {
     actions   = ["s3:ListBucket"]
@@ -19,7 +18,6 @@ data "aws_iam_policy_document" "confluent" {
 
   }
 }
-
 variable "bucket_arn" {
   default = ""
 }

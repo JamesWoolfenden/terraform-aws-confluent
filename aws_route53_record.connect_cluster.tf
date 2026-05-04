@@ -6,7 +6,6 @@ resource "aws_route53_record" "connect_cluster" {
   ttl     = "60"
   records = [element(var.connect_private_ip, count.index)]
 }
-
 resource "aws_route53_record" "reverse_connect_cluster" {
   count   = length(var.connect_private_ip)
   zone_id = aws_route53_zone.reverse.id

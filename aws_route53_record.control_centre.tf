@@ -6,7 +6,6 @@ resource "aws_route53_record" "control_centre" {
   ttl     = "60"
   records = [element(var.control_center_private_ip, count.index)]
 }
-
 resource "aws_route53_record" "reverse_control_centre" {
   count   = length(var.control_center_private_ip)
   zone_id = aws_route53_zone.reverse.id

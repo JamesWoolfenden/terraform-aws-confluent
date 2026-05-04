@@ -8,7 +8,6 @@ data "aws_ami" "redhat" {
 
   owners = ["309956199498"]
 }
-
 locals {
   source_ami_account_id = data.aws_caller_identity.current.account_id
 }

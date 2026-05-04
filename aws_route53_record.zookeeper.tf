@@ -6,7 +6,6 @@ resource "aws_route53_record" "zookeeper" {
   ttl     = "60"
   records = [element(var.zk_private_ip, count.index)]
 }
-
 resource "aws_route53_record" "reverse_zookeeper" {
   count   = length(var.zk_private_ip)
   zone_id = aws_route53_zone.reverse.id

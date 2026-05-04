@@ -6,7 +6,6 @@ resource "aws_route53_record" "kafka" {
   ttl     = "60"
   records = [element(var.broker_private_ip, count.index)]
 }
-
 resource "aws_route53_record" "reverse_kafka" {
   count   = length(var.broker_private_ip)
   zone_id = aws_route53_zone.reverse.id

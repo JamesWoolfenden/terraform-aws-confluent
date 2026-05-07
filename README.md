@@ -336,7 +336,7 @@ No requirements.
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
 | <a name="provider_template"></a> [template](#provider\_template) | n/a |
 
@@ -347,7 +347,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_iam_instance_profile.confluent_ssm](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_role.confluent_ssm](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.confluent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
@@ -399,7 +399,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_account_name"></a> [account\_name](#input\_account\_name) | Name of AWS account type e.g. Development. Testing or Production to help with naming | `string` | `"development"` | no |
 | <a name="input_allowed_connect_cluster_range"></a> [allowed\_connect\_cluster\_range](#input\_allowed\_connect\_cluster\_range) | n/a | `list(any)` | n/a | yes |
 | <a name="input_allowed_ranges"></a> [allowed\_ranges](#input\_allowed\_ranges) | A list of allowed IPs that can connect | `list(any)` | `[]` | no |
@@ -423,14 +423,14 @@ No modules.
 | <a name="input_control_center_private_ip"></a> [control\_center\_private\_ip](#input\_control\_center\_private\_ip) | n/a | `list(any)` | n/a | yes |
 | <a name="input_control_center_subnets"></a> [control\_center\_subnets](#input\_control\_center\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | n/a | `string` | n/a | yes |
-| <a name="input_egress_range"></a> [egress\_range](#input\_egress\_range) | n/a | `list(any)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| <a name="input_egress_range"></a> [egress\_range](#input\_egress\_range) | n/a | `list(any)` | <pre>[<br/>  "0.0.0.0/0"<br/>]</pre> | no |
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | n/a | `string` | n/a | yes |
 | <a name="input_kms_key"></a> [kms\_key](#input\_kms\_key) | n/a | `any` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | n/a | `string` | n/a | yes |
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | n/a | `any` | n/a | yes |
 | <a name="input_producer_subnets"></a> [producer\_subnets](#input\_producer\_subnets) | n/a | `list(any)` | n/a | yes |
-| <a name="input_roles"></a> [roles](#input\_roles) | n/a | `list(any)` | <pre>[<br>  "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",<br>  "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",<br>  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"<br>]</pre> | no |
+| <a name="input_roles"></a> [roles](#input\_roles) | n/a | `list(any)` | <pre>[<br/>  "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",<br/>  "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",<br/>  "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"<br/>]</pre> | no |
 | <a name="input_schema_instance_type"></a> [schema\_instance\_type](#input\_schema\_instance\_type) | n/a | `string` | `"t2.micro"` | no |
 | <a name="input_schema_private_ip"></a> [schema\_private\_ip](#input\_schema\_private\_ip) | n/a | `list(any)` | n/a | yes |
 | <a name="input_stunnel_cert"></a> [stunnel\_cert](#input\_stunnel\_cert) | n/a | `any` | n/a | yes |
@@ -438,12 +438,12 @@ No modules.
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
 | <a name="input_zk_private_ip"></a> [zk\_private\_ip](#input\_zk\_private\_ip) | n/a | `list(any)` | n/a | yes |
 | <a name="input_zk_subnets"></a> [zk\_subnets](#input\_zk\_subnets) | n/a | `list(any)` | n/a | yes |
-| <a name="input_zookeeper"></a> [zookeeper](#input\_zookeeper) | n/a | `map(any)` | <pre>{<br>  "client-listener-port": "5570",<br>  "instance_type": "t2.micro",<br>  "leader-listener-port": "5590",<br>  "peer-listener-port": "5580"<br>}</pre> | no |
+| <a name="input_zookeeper"></a> [zookeeper](#input\_zookeeper) | n/a | `map(any)` | <pre>{<br/>  "client-listener-port": "5570",<br/>  "instance_type": "t2.micro",<br/>  "leader-listener-port": "5590",<br/>  "peer-listener-port": "5580"<br/>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_bastion_ip"></a> [bastion\_ip](#output\_bastion\_ip) | n/a |
 | <a name="output_public_dns"></a> [public\_dns](#output\_public\_dns) | n/a |
 | <a name="output_public_ips"></a> [public\_ips](#output\_public\_ips) | n/a |
